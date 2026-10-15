@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import csv
+import re
 import json
 import sys
 from pathlib import Path
@@ -168,7 +169,21 @@ def g6_paper() -> tuple[str, str]:
         return TODO, "还没编出 paper/main.pdf（make paper）"
     if _has_placeholder(ROOT / "paper" / "main.tex"):
         return TODO, "paper/main.tex 里还有没填的〔〕"
-    return PASS, f"论文已成稿（{p.stat().st_size // 1024} KB）"
+
+    # 论文里引用的编号，bib 里必须真的存在 —— 否则参考文献会缺条目，编译不报错但论文是残缺的
+    bib = ROOT / "paper" / "refs.bib"
+    keys = set(re.findall(r"^@\w+\{([^,]+),", bib.read_text(encoding="utf-8"), re.M))
+    cited = set()
+    for tex in list((ROOT / "paper").glob("*.tex")) + list((ROOT / "paper" / "sections").glob("*.tex")):
+        cited |= set(re.findall(r"\\cite[a-z]*\{([^}]+)\}", tex.read_text(encoding="utf-8")))
+    cited = {k.strip() for grp in cited for k in grp.split(",")}
+    missing = sorted(cited - keys)
+    if missing:
+        return FAIL, f"论文引用了 bib 里没有的编号：{missing}"
+
+    unused = len(keys - cited)
+    note = f"，已引用 {len(cited)} 条" + (f"（另有 {unused} 条备用）" if unused else "")
+    return PASS, f"论文已成稿（{p.stat().st_size // 1024} KB）{note}"
 
 
 def g7_deliver() -> tuple[str, str]:
