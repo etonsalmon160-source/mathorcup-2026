@@ -224,6 +224,28 @@ def check_guards_falsifiable() -> list[tuple[str, str]]:
     return out
 
 
+def check_starter_kits() -> list[tuple[str, str]]:
+    """评价类 / 优化类起手式的冒烟测试。
+
+    这两块平时用不上（赛题多半是预测题），但**正是"平时用不上"的部分最容易烂**。
+    """
+    import io
+    import contextlib
+
+    out = []
+    for name, mod_name in [("评价类（AHP+熵权+TOPSIS）", "src.evaluate"),
+                           ("优化类（LP/MILP/指派/灵敏度）", "src.optimize")]:
+        try:
+            mod = __import__(mod_name, fromlist=["demo"])
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(buf):
+                mod.demo()
+            out.append((name, "✓ 跑通"))
+        except Exception as e:                              # noqa: BLE001
+            out.append((name, f"✗ {type(e).__name__}: {str(e)[:90]}"))
+    return out
+
+
 def cleanup(names: list[str]) -> None:
     for name in names:
         shutil.rmtree(PATHS["results"] / name, ignore_errors=True)
@@ -251,13 +273,19 @@ def main() -> None:
         print(f"  {status:34s} {name}")
     guard_failed = any(s.startswith("✗") for _, s in guard_results)
 
+    print("\n===== 题型起手式（评价类 / 优化类）=====")
+    starter_results = check_starter_kits()
+    for name, status in starter_results:
+        print(f"  {status:30s} {name}")
+    starter_failed = any(s.startswith("✗") for _, s in starter_results)
+
     print("\n===== 检查 src/configs/ 下的配置文件 =====")
     cfg_results = check_shipped_configs()
     for name, status in cfg_results:
         print(f"  {status:44s} {name}")
     cfg_failed = any(s.startswith("✗") for _, s in cfg_results)
 
-    results, failed = [], (cfg_failed or guard_failed)
+    results, failed = [], (cfg_failed or guard_failed or starter_failed)
     for kind in ["classification", "regression"]:
         n_tr, n_te = 900, 300
         tr = make_synthetic(kind, n_tr, seed=1)
@@ -300,6 +328,8 @@ def main() -> None:
     print("\n" + "=" * 58)
     for name, status in guard_results:
         print(f"  守卫 {name:30s} {status}")
+    for name, status in starter_results:
+        print(f"  起手式 {name:26s} {status}")
     for name, status in cfg_results:
         print(f"  配置 {name:34s} {status}")
     for kind, model, status in results:
