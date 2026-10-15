@@ -722,3 +722,179 @@
   year    = {1995},
   note    = {PMID 8963468; 卷期页请在出版商页面复核后补全}
 }
+
+% ============================================================
+%  十八、分布偏移：独立基准与批判证据
+%  （用来论证"我们查过 IRM/DG 这条路、知道它打不过简单方法、所以不做"）
+% ============================================================
+
+@inproceedings{gulrajani2021search,
+  title     = {In Search of Lost Domain Generalization},
+  author    = {Gulrajani, Ishaan and Lopez-Paz, David},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021},
+  note      = {arXiv:2007.01434; 摘要原文：当算法实现被认真对待时，ERM 在所有数据集上达到 SOTA}
+}
+
+@inproceedings{rosenfeld2021risks,
+  title     = {The Risks of Invariant Risk Minimization},
+  author    = {Rosenfeld, Elan and Ravikumar, Pradeep and Risteski, Andrej},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2021},
+  note      = {arXiv:2010.05761; IRM 可能灾难性失败，且根本上无法超越 ERM}
+}
+
+@inproceedings{koh2021wilds,
+  title     = {{WILDS}: A Benchmark of in-the-Wild Distribution Shifts},
+  author    = {Koh, Pang Wei and Sagawa, Shiori and Marklund, Henrik and
+               Xie, Sang Michael and Zhang, Marvin and Balsubramani, Akshay and
+               others},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2021},
+  note      = {arXiv:2012.07421}
+}
+
+@inproceedings{yao2022wildtime,
+  title     = {{Wild-Time}: A Benchmark of in-the-Wild Distribution Shift over Time},
+  author    = {Yao, Huaxiu and Choi, Caroline and Cao, Bochuan and Lee, Yoonho and
+               Koh, Pang Wei and Finn, Chelsea},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS),
+               Datasets and Benchmarks Track},
+  year      = {2022},
+  note      = {arXiv:2211.14238; 时间维度偏移下没有任何方法比 ERM 更稳健}
+}
+
+@inproceedings{rabanser2019failing,
+  title     = {Failing Loudly: An Empirical Study of Methods for Detecting Dataset Shift},
+  author    = {Rabanser, Stephan and G{\"u}nnemann, Stephan and Lipton, Zachary C.},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2019},
+  note      = {arXiv:1810.11953}
+}
+
+@inproceedings{baek2022agreement,
+  title     = {Agreement-on-the-Line: Predicting the Performance of Neural Networks
+               under Distribution Shift},
+  author    = {Baek, Christina and Jiang, Yiding and Raghunathan, Aditi and Kolter, J. Zico},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2022},
+  note      = {arXiv:2206.13089; 无需测试标签，仅用模型间一致率预测测试表现}
+}
+
+@article{salaudeen2025aotl,
+  title   = {Are Domain Generalization Benchmarks with Accuracy on the Line Misspecified?},
+  author  = {Salaudeen, Olawale and Chiou, Nicole and Weng, Shiny and Koyejo, Sanmi},
+  journal = {Transactions on Machine Learning Research (TMLR)},
+  year    = {2025},
+  note    = {arXiv:2504.00186}
+}
+
+@article{qian2021adversarial,
+  title   = {Managing dataset shift by adversarial validation for credit scoring},
+  author  = {Qian, Hongyi and Wang, Baohui and Ma, Ping and Peng, Lei and
+             Gao, Songfeng and Song, You},
+  journal = {arXiv preprint arXiv:2112.10078},
+  year    = {2021}
+}
+
+% ============================================================
+%  十九、决策层：共形预测与风险控制
+% ============================================================
+
+@inproceedings{angelopoulos2024crc,
+  title     = {Conformal Risk Control},
+  author    = {Angelopoulos, Anastasios N. and Bates, Stephen and Fisch, Adam and
+               Lei, Lihua and Schuster, Tal},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2208.02814; 把覆盖保证推广到任意单调损失的期望值}
+}
+
+@article{angelopoulos2021gentle,
+  title   = {A Gentle Introduction to Conformal Prediction and Distribution-Free
+             Uncertainty Quantification},
+  author  = {Angelopoulos, Anastasios N. and Bates, Stephen},
+  journal = {arXiv preprint arXiv:2107.07511},
+  year    = {2021}
+}
+
+@inproceedings{tibshirani2019covariate,
+  title     = {Conformal Prediction Under Covariate Shift},
+  author    = {Tibshirani, Ryan J. and Barber, Rina Foygel and
+               Cand{\`e}s, Emmanuel and Ramdas, Aaditya},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2019},
+  note      = {arXiv:1904.06019}
+}
+
+@inproceedings{gibbs2021aci,
+  title     = {Adaptive Conformal Inference Under Distribution Shift},
+  author    = {Gibbs, Isaac and Cand{\`e}s, Emmanuel},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2021},
+  note      = {arXiv:2106.00170}
+}
+
+@article{bates2021rcps,
+  title   = {Distribution-Free, Risk-Controlling Prediction Sets},
+  author  = {Bates, Stephen and Angelopoulos, Anastasios N. and Romano, Yaniv and
+             Sesia, Matteo and Zhou, Yichen},
+  journal = {Journal of the ACM},
+  volume  = {68},
+  number  = {6},
+  year    = {2021},
+  note    = {arXiv:2101.02703}
+}
+
+% ============================================================
+%  二十、决策导向学习（预测-优化一体化）
+% ============================================================
+
+@article{elmachtoub2022smart,
+  title   = {Smart ``Predict, then Optimize''},
+  author  = {Elmachtoub, Adam N. and Grigas, Paul},
+  journal = {Management Science},
+  year    = {2022},
+  note    = {arXiv:1710.08005}
+}
+
+@article{mandi2024dfl,
+  title   = {Decision-Focused Learning: Foundations, State of the Art, Benchmark and
+             Future Opportunities},
+  author  = {Mandi, Jayanta and Kotary, James and Berden, Senne and Mulamba, Maxime and
+             Bucarey, Victor and Guns, Tias and Lombardi, Michele},
+  journal = {Journal of Artificial Intelligence Research},
+  volume  = {81},
+  pages   = {1623--1701},
+  year    = {2024},
+  note    = {arXiv:2307.13565; 综述指出 DFL 在训练数据 <200 条时会输给两阶段法}
+}
+
+@inproceedings{wilder2019melding,
+  title     = {Melding the Data-Decisions Pipeline: Decision-Focused Learning for
+               Combinatorial Optimization},
+  author    = {Wilder, Bryan and Dilkina, Bistra and Tambe, Milind},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  year      = {2019},
+  note      = {arXiv:1809.05504}
+}
+
+% ============================================================
+%  二十一、选择性预测 / 弃答 / 人机分工
+% ============================================================
+
+@inproceedings{geifman2019selectivenet,
+  title     = {{SelectiveNet}: A Deep Neural Network with an Integrated Reject Option},
+  author    = {Geifman, Yonatan and El-Yaniv, Ran},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2019},
+  note      = {arXiv:1901.09192}
+}
+
+@inproceedings{mozannar2020consistent,
+  title     = {Consistent Estimators for Learning to Defer to an Expert},
+  author    = {Mozannar, Hussein and Sontag, David},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2020},
+  note      = {arXiv:2006.01862}
+}
