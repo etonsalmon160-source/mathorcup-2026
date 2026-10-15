@@ -25,13 +25,17 @@ echo ">>> [4/7] 特征组消融 + 融合/门控"
 $PY -m src.ablate --config "$CONFIG"
 $PY -m src.fuse --config "$CONFIG"
 
-echo ">>> [5/7] 出提交文件"
+echo ">>> [5/7] 共形风险控制（给决策加保证）"
+$PY -m src.conformal --config "$CONFIG" --budget "${BUDGET:-0.10}" || \
+  echo "  （非二分类任务会跳过，不影响流程）"
+
+echo ">>> [6/7] 出提交文件"
 $PY -m src.predict --config "$CONFIG"
 
-echo ">>> [6/7] 出图"
+echo ">>> [7/7] 出图"
 $PY -m src.plots --config "$CONFIG"
 
-echo ">>> [7/7] 实验台账 + 过门检查"
+echo ">>> 台账 + 过门检查"
 $PY - <<'EOF'
 from pathlib import Path
 from src.config import PATHS

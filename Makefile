@@ -1,6 +1,7 @@
-.PHONY: help check env paper run-all run data train predict plots eda smoke gate validate ablate fuse clean
+.PHONY: help check env paper run-all run data train predict plots eda smoke gate validate ablate fuse conformal clean
 
 CONFIG ?= src/configs/baseline.yaml
+BUDGET ?= 0.10
 
 PY := /home/eto/miniconda3/envs/mathorcup/bin/python
 LATEX := /home/eto/.local/bin/xelatex
@@ -53,6 +54,10 @@ ablate:
 # 融合/门控：多专家加权组合，必须赢过最好单模型才算数（G5 的证据）
 fuse:
 	$(PY) -m src.fuse --config $(CONFIG)
+
+# 共形风险控制：不用 0.5 当阈值，反解出"期望漏判率 ≤ 预算"的阈值（带分布无关保证）
+conformal:
+	$(PY) -m src.conformal --config $(CONFIG) --budget $(BUDGET)
 
 paper:
 	cd paper && $(LATEX) -interaction=nonstopmode main.tex

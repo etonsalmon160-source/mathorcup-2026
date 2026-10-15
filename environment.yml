@@ -69,3 +69,5 @@ dependencies:
       - gplearn          # 符号回归，创新点常用
       - feature-engine   # 特征工程
       - ydata-profiling  # 一键 EDA 报告（HTML）
+      - mapie            # 共形预测 / 共形风险控制（分布无关的保证）
+                         # 官方实现另有 aangelopoulos/conformal-risk（MIT，核心 5 行）
