@@ -1,20 +1,724 @@
 % 参考文献。正文用 \citep{key} 或 \citet{key} 引用。
-% 官方要求：引用公开文献须注明来源；禁止抄袭。
+%
+% ⚠️ 引用纪律（见 docs/门控系统.md 铁律 4）：
+%   这里的每一条都必须**真实存在且被读过**。写进论文前，凡标「待核」的必须在
+%   arXiv / 出版方页面复核一遍。**绝不编造标题、作者或 DOI** —— 编造引用是论文的致命伤。
+%   文献地图与每条"它证明了什么"见 docs/文献库.md。
+%
+% 核验时间：2026-10-15
 
-@article{lightgbm2017,
-  title   = {LightGBM: A Highly Efficient Gradient Boosting Decision Tree},
-  author  = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and
-             Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},
-  journal = {Advances in Neural Information Processing Systems},
-  volume  = {30},
-  year    = {2017}
-}
+% ============================================================
+%  一、梯度提升树三巨头（主干方法，必引）
+% ============================================================
 
-@inproceedings{xgboost2016,
-  title     = {XGBoost: A Scalable Tree Boosting System},
+@inproceedings{chen2016xgboost,
+  title     = {{XGBoost}: A Scalable Tree Boosting System},
   author    = {Chen, Tianqi and Guestrin, Carlos},
   booktitle = {Proceedings of the 22nd ACM SIGKDD International Conference on
-               Knowledge Discovery and Data Mining},
+               Knowledge Discovery and Data Mining (KDD)},
   pages     = {785--794},
-  year      = {2016}
+  year      = {2016},
+  doi       = {10.1145/2939672.2939785}
+}
+
+@inproceedings{ke2017lightgbm,
+  title     = {{LightGBM}: A Highly Efficient Gradient Boosting Decision Tree},
+  author    = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and
+               Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  volume    = {30},
+  year      = {2017}
+}
+
+@inproceedings{prokhorenkova2018catboost,
+  title     = {{CatBoost}: Unbiased Boosting with Categorical Features},
+  author    = {Prokhorenkova, Liudmila and Gusev, Gleb and Vorobev, Aleksandr and
+               Dorogush, Anna Veronika and Gulin, Andrey},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2018},
+  note      = {arXiv:1706.09516}
+}
+
+% ============================================================
+%  二、树模型 vs 深度学习：共识与基准（用于论证"为什么选 GBDT"）
+% ============================================================
+
+@inproceedings{grinsztajn2022why,
+  title     = {Why do tree-based models still outperform deep learning on typical tabular data?},
+  author    = {Grinsztajn, L{\'e}o and Oyallon, Edouard and Varoquaux, Ga{\"e}l},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS),
+               Datasets and Benchmarks Track},
+  year      = {2022},
+  note      = {arXiv:2207.08815}
+}
+
+@article{shwartzziv2022tabular,
+  title   = {Tabular data: Deep learning is not all you need},
+  author  = {Shwartz-Ziv, Ravid and Armon, Amitai},
+  journal = {Information Fusion},
+  volume  = {81},
+  year    = {2022},
+  doi     = {10.1016/j.inffus.2021.11.011}
+}
+
+@misc{erickson2025tabarena,
+  title         = {{TabArena}: A Living Benchmark for Machine Learning on Tabular Data},
+  author        = {Erickson, Nick and Purucker, Lennart and Tschalzev, Andrej and
+                   Holzm{\"u}ller, David and Mutalik Desai, Prateek and
+                   Salinas, David and Hutter, Frank},
+  year          = {2025},
+  eprint        = {2506.16791},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+@misc{ye2024closer,
+  title         = {A Closer Look at Deep Learning Methods on Tabular Datasets},
+  author        = {Ye, Han-Jia and Liu, Si-Yang and Cai, Hao-Run and
+                   Zhou, Qi-Le and Zhan, De-Chuan},
+  year          = {2024},
+  eprint        = {2407.00956},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+@misc{jiang2025representation,
+  title         = {Representation Learning for Tabular Data: A Comprehensive Survey},
+  author        = {Jiang, Jun-Peng and Liu, Si-Yang and Cai, Hao-Run and
+                   Zhou, Qile and Ye, Han-Jia},
+  year          = {2025},
+  eprint        = {2504.16109},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+% ============================================================
+%  三、表格基础模型（小样本上的真正变量）
+% ============================================================
+
+@article{hollmann2025accurate,
+  title   = {Accurate predictions on small data with a tabular foundation model},
+  author  = {Hollmann, Noah and M{\"u}ller, Samuel and Purucker, Lennart and
+             Krishnakumar, Arjun and K{\"o}rfer, Max and Hoo, Shi Bin and
+             Schirrmeister, Robin Tibor and Hutter, Frank},
+  journal = {Nature},
+  volume  = {637},
+  number  = {8045},
+  pages   = {319--326},
+  year    = {2025},
+  doi     = {10.1038/s41586-024-08328-6}
+}
+
+@inproceedings{hollmann2023tabpfn,
+  title     = {{TabPFN}: A Transformer That Solves Small Tabular Classification Problems in a Second},
+  author    = {Hollmann, Noah and M{\"u}ller, Samuel and Eggensperger, Katharina and
+               Hutter, Frank},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  note      = {arXiv:2207.01848}
+}
+
+@inproceedings{qu2025tabicl,
+  title     = {{TabICL}: A Tabular Foundation Model for In-Context Learning on Large Data},
+  author    = {Qu, Jingang and Holzm{\"u}ller, David and Varoquaux, Ga{\"e}l and
+               Le Morvan, Marine},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2025},
+  note      = {arXiv:2502.05564}
+}
+
+@misc{ye2025closertabpfn,
+  title         = {A Closer Look at {TabPFN} v2: Understanding Its Strengths and
+                   Extending Its Capabilities},
+  author        = {Ye, Han-Jia and Liu, Si-Yang and Chao, Wei-Lun},
+  year          = {2025},
+  eprint        = {2502.17361},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+@misc{zhang2025tabpfn,
+  title         = {{TabPFN}: One Model to Rule Them All?},
+  author        = {Zhang, Qiong and Tan, Yan Shuo and Tian, Qinglong and Li, Pengfei},
+  year          = {2025},
+  eprint        = {2505.20003},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+% ============================================================
+%  四、神经表格模型（选引，用于"我们比较过"）
+% ============================================================
+
+@inproceedings{holzmuller2024better,
+  title     = {Better by Default: Strong Pre-Tuned {MLP}s and Boosted Trees on Tabular Data},
+  author    = {Holzm{\"u}ller, David and Grinsztajn, L{\'e}o and Steinwart, Ingo},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2024},
+  note      = {arXiv:2407.04491}
+}
+
+@inproceedings{gorishniy2025tabm,
+  title     = {{TabM}: Advancing Tabular Deep Learning with Parameter-Efficient Ensembling},
+  author    = {Gorishniy, Yury and Kotelnikov, Akim and Babenko, Artem},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  note      = {arXiv:2410.24210}
+}
+
+@inproceedings{gorishniy2021revisiting,
+  title     = {Revisiting Deep Learning Models for Tabular Data},
+  author    = {Gorishniy, Yury and Rubachev, Ivan and Khrulkov, Valentin and Babenko, Artem},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2021},
+  note      = {arXiv:2106.11959}
+}
+
+@inproceedings{marton2024grande,
+  title     = {{GRANDE}: Gradient-Based Decision Tree Ensembles for Tabular Data},
+  author    = {Marton, Sascha and L{\"u}dtke, Stefan and Bartelt, Christian and
+               Stuckenschmidt, Heiner},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2309.17130}
+}
+
+% ============================================================
+%  五、类别特征与缺失值（有实证支持的实践依据）
+% ============================================================
+
+@misc{poslavskaya2023encoding,
+  title         = {Encoding categorical data: Is there yet anything 'hotter' than one-hot encoding?},
+  author        = {Poslavskaya, Ekaterina and Korolev, Alexey},
+  year          = {2023},
+  eprint        = {2312.16930},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+% ============================================================
+%  六、状态空间 / SSM 架构主线
+% ============================================================
+
+@inproceedings{gu2022s4,
+  title     = {Efficiently Modeling Long Sequences with Structured State Spaces},
+  author    = {Gu, Albert and Goel, Karan and R{\'e}, Christopher},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2022},
+  note      = {arXiv:2111.00396}
+}
+
+@article{gu2023mamba,
+  title   = {Mamba: Linear-Time Sequence Modeling with Selective State Spaces},
+  author  = {Gu, Albert and Dao, Tri},
+  journal = {arXiv preprint arXiv:2312.00752},
+  year    = {2023}
+}
+
+@inproceedings{dao2024transformers,
+  title     = {Transformers are {SSM}s: Generalized Models and Efficient Algorithms
+               Through Structured State Space Duality},
+  author    = {Dao, Tri and Gu, Albert},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  year      = {2024},
+  note      = {arXiv:2405.21060}
+}
+
+@article{wang2024smamba,
+  title   = {Is Mamba Effective for Time Series Forecasting?},
+  author  = {Wang, Zihan and Kong, Fanheng and Feng, Shi and Wang, Ming and
+             Yang, Xiaocui and Zhao, Han and Wang, Daling and Zhang, Yifei},
+  journal = {Neurocomputing},
+  year    = {2025},
+  note    = {arXiv:2403.11144; introduces Simple-Mamba (S-Mamba)}
+}
+
+@inproceedings{rangapuram2018deep,
+  title     = {Deep State Space Models for Time Series Forecasting},
+  author    = {Rangapuram, Syama Sundar and Seeger, Matthias W. and Gasthaus, Jan and
+               Stella, Lorenzo and Wang, Yuyang and Januschowski, Tim},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2018}
+}
+
+@article{patro2025mamba360,
+  title   = {Mamba-360: Survey of State Space Models as Transformer Alternative for
+             Long Sequence Modelling: Methods, Applications, and Challenges},
+  author  = {Patro, Badri Narayana and Agneeswaran, Vijay Srinivas},
+  journal = {Engineering Applications of Artificial Intelligence},
+  year    = {2025},
+  note    = {arXiv:2404.16112}
+}
+
+% ============================================================
+%  七、时序预测基准与对手盘
+% ============================================================
+
+@inproceedings{zeng2023dlinear,
+  title     = {Are Transformers Effective for Time Series Forecasting?},
+  author    = {Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  year      = {2023},
+  doi       = {10.1609/aaai.v37i9.26317},
+  note      = {arXiv:2205.13504}
+}
+
+@inproceedings{nie2023patchtst,
+  title     = {A Time Series is Worth 64 Words: Long-term Forecasting with Transformers},
+  author    = {Nie, Yuqi and Nguyen, Nam H. and Sinthong, Phanwadee and Kalagnanam, Jayant},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  note      = {arXiv:2211.14730}
+}
+
+@inproceedings{liu2024itransformer,
+  title     = {{iTransformer}: Inverted Transformers Are Effective for Time Series Forecasting},
+  author    = {Liu, Yong and Hu, Tengge and Zhang, Haoran and Wu, Haixu and
+               Wang, Shiyu and Ma, Lintao and Long, Mingsheng},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2310.06625}
+}
+
+@inproceedings{wu2023timesnet,
+  title     = {{TimesNet}: Temporal {2D}-Variation Modeling for General Time Series Analysis},
+  author    = {Wu, Haixu and Hu, Tengge and Liu, Yong and Zhou, Hang and
+               Wang, Jianmin and Long, Mingsheng},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2023},
+  note      = {arXiv:2210.02186}
+}
+
+@inproceedings{wang2024timemixer,
+  title     = {{TimeMixer}: Decomposable Multiscale Mixing for Time Series Forecasting},
+  author    = {Wang, Shiyu and Wu, Haixu and Shi, Xiaoming and Hu, Tengge and
+               Luo, Huakun and Ma, Lintao and Zhang, James Y. and Zhou, Jun},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2405.14616}
+}
+
+@inproceedings{oreshkin2020nbeats,
+  title     = {{N-BEATS}: Neural Basis Expansion Analysis for Interpretable Time Series Forecasting},
+  author    = {Oreshkin, Boris N. and Carpov, Dmitri and Chapados, Nicolas and Bengio, Yoshua},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2020},
+  note      = {arXiv:1905.10437}
+}
+
+@article{lim2021tft,
+  title   = {Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting},
+  author  = {Lim, Bryan and Arik, Sercan {\"O}. and Loeff, Nicolas and Pfister, Tomas},
+  journal = {International Journal of Forecasting},
+  year    = {2021},
+  note    = {arXiv:1912.09363}
+}
+
+@article{brigato2025nochampions,
+  title   = {There are no Champions in Supervised Long-Term Time Series Forecasting},
+  author  = {Brigato, Lorenzo and Morand, Rafael and Str{\o}mmen, Knut and
+             Panagiotou, Maria and Schmidt, Markus and Mougiakakou, Stavroula},
+  journal = {Transactions on Machine Learning Research (TMLR)},
+  year    = {2025},
+  note    = {arXiv:2502.14045}
+}
+
+@misc{wang2024deeptimeseries,
+  title         = {Deep Time Series Models: A Comprehensive Survey and Benchmark},
+  author        = {Wang, Yuxuan and Wu, Haixu and Dong, Jiaxiang and Liu, Yong and
+                   Wang, Chen and Long, Mingsheng and Wang, Jianmin},
+  year          = {2024},
+  eprint        = {2407.13278},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+% ============================================================
+%  八、计量经济学状态空间（经济哥的主场）
+% ============================================================
+
+@book{durbin2012statespace,
+  title     = {Time Series Analysis by State Space Methods},
+  author    = {Durbin, James and Koopman, Siem Jan},
+  edition   = {2nd},
+  publisher = {Oxford University Press},
+  year      = {2012},
+  isbn      = {9780199641178}
+}
+
+@book{harvey1989forecasting,
+  title     = {Forecasting, Structural Time Series Models and the Kalman Filter},
+  author    = {Harvey, Andrew C.},
+  publisher = {Cambridge University Press},
+  year      = {1989}
+}
+
+@article{giannone2008nowcasting,
+  title   = {Nowcasting: The Real-Time Informational Content of Macroeconomic Data},
+  author  = {Giannone, Domenico and Reichlin, Lucrezia and Small, David},
+  journal = {Journal of Monetary Economics},
+  volume  = {55},
+  number  = {4},
+  pages   = {665--676},
+  year    = {2008}
+}
+
+@incollection{banbura2011nowcasting,
+  title     = {Nowcasting},
+  author    = {Ba{\'n}bura, Marta and Giannone, Domenico and Reichlin, Lucrezia},
+  booktitle = {The Oxford Handbook of Economic Forecasting},
+  editor    = {Clements, Michael P. and Hendry, David F.},
+  publisher = {Oxford University Press},
+  year      = {2011}
+}
+
+@article{bok2018macroeconomic,
+  title   = {Macroeconomic Nowcasting and Forecasting with Big Data},
+  author  = {Bok, Brandyn and Caratelli, Daniele and Giannone, Domenico and
+             Sbordone, Argia M. and Tambalotti, Andrea},
+  journal = {Annual Review of Economics},
+  volume  = {10},
+  pages   = {615--643},
+  year    = {2018},
+  doi     = {10.1146/annurev-economics-080217-053214}
+}
+
+@article{ghysels2007midas,
+  title   = {{MIDAS} Regressions: Further Results and New Directions},
+  author  = {Ghysels, Eric and Sinko, Arthur and Valkanov, Rossen},
+  journal = {Econometric Reviews},
+  volume  = {26},
+  number  = {1},
+  pages   = {53--90},
+  year    = {2007},
+  doi     = {10.1080/07474930600972467}
+}
+
+@article{soybilgen2021nowcasting,
+  title   = {Nowcasting {US} {GDP} Using Tree-Based Ensemble Models and Dynamic Factors},
+  author  = {Soybilgen, Bar{\i}{\c{s}} and Yazgan, Ege},
+  journal = {Computational Economics},
+  volume  = {57},
+  number  = {1},
+  year    = {2021},
+  doi     = {10.1007/s10614-020-10083-5}
+}
+
+@techreport{chinn2023nowcasting,
+  title       = {Nowcasting World Trade with Machine Learning: A Three-Step Approach},
+  author      = {Chinn, Menzie D. and Meunier, Baptiste and Stumpner, Sebastian},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {31419},
+  year        = {2023},
+  doi         = {10.3386/w31419}
+}
+
+% ============================================================
+%  九、跨学科桥接：潜状态是同一个数学对象
+% ============================================================
+
+@article{augermethe2021guide,
+  title   = {A Guide to State-Space Modeling of Ecological Time Series},
+  author  = {Auger-M{\'e}th{\'e}, Marie and Newman, Ken and Cole, Diana and
+             Empacher, Fanny and Gryba, Rowenna and King, Aaron A. and
+             Leos-Barajas, Vianney and Mills Flemming, Joanna and Nielsen, Anders and
+             Petris, Giovanni and Thomas, Len},
+  journal = {Ecological Monographs},
+  volume  = {91},
+  number  = {4},
+  pages   = {e01470},
+  year    = {2021},
+  doi     = {10.1002/ecm.1470}
+}
+
+@article{cai2024dynamicfactor,
+  title   = {Dynamic Factor Analysis with Dependent {G}aussian Processes for
+             High-Dimensional Gene Expression Trajectories},
+  author  = {Cai, Jiachen and Goudie, Robert J. B. and Starr, Colin and Tom, Brian D. M.},
+  journal = {Biometrics},
+  volume  = {80},
+  number  = {4},
+  year    = {2024},
+  doi     = {10.1093/biomtc/ujae131}
+}
+
+@article{qiu2020scribe,
+  title   = {Inferring Causal Gene Regulatory Networks from Coupled Single-Cell
+             Expression Dynamics Using {S}cribe},
+  author  = {Qiu, Xiaojie and Rahimzamani, Arman and Wang, Li and Ren, Bingcheng and
+             Mao, Qi and Durham, Timothy and McFaline-Figueroa, Jos{\'e} L. and
+             Saunders, Lauren and Trapnell, Cole and Kannan, Sreeram},
+  journal = {Cell Systems},
+  volume  = {10},
+  number  = {3},
+  pages   = {265--274},
+  year    = {2020},
+  doi     = {10.1016/j.cels.2020.02.003}
+}
+
+% ============================================================
+%  十、门控 / 混合专家（MoE）：奠基经典
+% ============================================================
+
+@article{jacobs1991adaptive,
+  title   = {Adaptive Mixtures of Local Experts},
+  author  = {Jacobs, Robert A. and Jordan, Michael I. and Nowlan, Steven J. and
+             Hinton, Geoffrey E.},
+  journal = {Neural Computation},
+  volume  = {3},
+  number  = {1},
+  pages   = {79--87},
+  year    = {1991},
+  doi     = {10.1162/neco.1991.3.1.79}
+}
+
+@article{jordan1994hierarchical,
+  title   = {Hierarchical Mixtures of Experts and the {EM} Algorithm},
+  author  = {Jordan, Michael I. and Jacobs, Robert A.},
+  journal = {Neural Computation},
+  volume  = {6},
+  number  = {2},
+  pages   = {181--214},
+  year    = {1994},
+  doi     = {10.1162/neco.1994.6.2.181}
+}
+
+@article{wolpert1992stacked,
+  title   = {Stacked generalization},
+  author  = {Wolpert, David H.},
+  journal = {Neural Networks},
+  volume  = {5},
+  number  = {2},
+  pages   = {241--259},
+  year    = {1992},
+  doi     = {10.1016/S0893-6080(05)80023-1}
+}
+
+@article{yuksel2012twenty,
+  title   = {Twenty Years of Mixture of Experts},
+  author  = {Y{\"u}ksel, Seniha Esen and Wilson, Joseph N. and Gader, Paul D.},
+  journal = {IEEE Transactions on Neural Networks and Learning Systems},
+  volume  = {23},
+  number  = {8},
+  pages   = {1177--1193},
+  year    = {2012},
+  doi     = {10.1109/TNNLS.2012.2200299}
+}
+
+@article{bengio2013estimating,
+  title   = {Estimating or Propagating Gradients Through Stochastic Neurons for
+             Conditional Computation},
+  author  = {Bengio, Yoshua and L{\'e}onard, Nicholas and Courville, Aaron},
+  journal = {arXiv preprint arXiv:1308.3432},
+  year    = {2013}
+}
+
+% ============================================================
+%  十一、现代稀疏 MoE（只用于"了解前沿"，不照做）
+% ============================================================
+
+@inproceedings{shazeer2017outrageously,
+  title     = {Outrageously Large Neural Networks: The Sparsely-Gated
+               Mixture-of-Experts Layer},
+  author    = {Shazeer, Noam and Mirhoseini, Azalia and Maziarz, Krzysztof and
+               Davis, Andy and Le, Quoc and Hinton, Geoffrey and Dean, Jeff},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2017},
+  note      = {arXiv:1701.06538}
+}
+
+@article{fedus2022switch,
+  title   = {Switch Transformers: Scaling to Trillion Parameter Models with
+             Simple and Efficient Sparsity},
+  author  = {Fedus, William and Zoph, Barret and Shazeer, Noam},
+  journal = {Journal of Machine Learning Research},
+  volume  = {23},
+  number  = {120},
+  pages   = {1--39},
+  year    = {2022},
+  note    = {arXiv:2101.03961}
+}
+
+@inproceedings{puigcerver2024soft,
+  title     = {From Sparse to Soft Mixtures of Experts},
+  author    = {Puigcerver, Joan and Riquelme, Carlos and Mustafa, Basil and Houlsby, Neil},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024},
+  note      = {arXiv:2308.00951}
+}
+
+@misc{cai2024survey,
+  title         = {A Survey on Mixture of Experts in Large Language Models},
+  author        = {Cai, Weilin and Jiang, Juyong and Wang, Fan and Tang, Jing and
+                   Kim, Sunghun and Huang, Jiayi},
+  year          = {2024},
+  eprint        = {2407.06204},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL}
+}
+
+% ============================================================
+%  十二、动态集成选择（"按样本路由"的正统文献）
+% ============================================================
+
+@article{ko2008dynamic,
+  title   = {From dynamic classifier selection to dynamic ensemble selection},
+  author  = {Ko, Albert H. R. and Sabourin, Robert and Britto, Alceu Souza},
+  journal = {Pattern Recognition},
+  volume  = {41},
+  number  = {5},
+  pages   = {1718--1731},
+  year    = {2008},
+  doi     = {10.1016/j.patcog.2007.10.015}
+}
+
+@article{britto2014dynamic,
+  title   = {Dynamic selection of classifiers---A comprehensive review},
+  author  = {Britto, Alceu S. and Sabourin, Robert and Oliveira, Luiz E. S.},
+  journal = {Pattern Recognition},
+  volume  = {47},
+  number  = {11},
+  pages   = {3665--3680},
+  year    = {2014},
+  doi     = {10.1016/j.patcog.2014.05.003}
+}
+
+@article{cruz2015metades,
+  title   = {{META-DES}: A dynamic ensemble selection framework using meta-learning},
+  author  = {Cruz, Rafael M. O. and Sabourin, Robert and Cavalcanti, George D. C. and
+             Ren, Tsang Ing},
+  journal = {Pattern Recognition},
+  volume  = {48},
+  number  = {5},
+  pages   = {1925--1935},
+  year    = {2015},
+  doi     = {10.1016/j.patcog.2014.12.003}
+}
+
+@article{cruz2017metadesoracle,
+  title   = {{META-DES.Oracle}: Meta-learning and feature selection for
+             dynamic ensemble selection},
+  author  = {Cruz, Rafael M. O. and Sabourin, Robert and Cavalcanti, George D. C.},
+  journal = {Information Fusion},
+  volume  = {38},
+  pages   = {84--103},
+  year    = {2017},
+  doi     = {10.1016/j.inffus.2017.02.010}
+}
+
+% ============================================================
+%  十三、门控 + 可解释性 / 亚群发现（创新点主力）
+% ============================================================
+
+@inproceedings{huo2021sparse,
+  title     = {Sparse Gated Mixture-of-Experts to Separate and Interpret Patient
+               Heterogeneity in {EHR} Data},
+  author    = {Huo, Zepeng and Zhang, Lida and Khera, Rohan and Huang, Shuai and
+               Qian, Xiaoning and Wang, Zhangyang and Mortazavi, Bobak J.},
+  booktitle = {2021 IEEE EMBS International Conference on Biomedical and
+               Health Informatics (BHI)},
+  year      = {2021},
+  doi       = {10.1109/BHI50953.2021.9508549}
+}
+
+% ============================================================
+%  十四、异质性处理效应（经济学视角的"门控"）
+% ============================================================
+
+@article{wager2018estimation,
+  title   = {Estimation and Inference of Heterogeneous Treatment Effects using Random Forests},
+  author  = {Wager, Stefan and Athey, Susan},
+  journal = {Journal of the American Statistical Association},
+  volume  = {113},
+  number  = {523},
+  pages   = {1228--1242},
+  year    = {2018},
+  doi     = {10.1080/01621459.2017.1319839}
+}
+
+@article{kunzel2019metalearners,
+  title   = {Metalearners for estimating heterogeneous treatment effects using machine learning},
+  author  = {K{\"u}nzel, S{\"o}ren R. and Sekhon, Jasjeet S. and
+             Bickel, Peter J. and Yu, Bin},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {116},
+  number  = {10},
+  pages   = {4156--4165},
+  year    = {2019},
+  doi     = {10.1073/pnas.1804597116}
+}
+
+% ============================================================
+%  十五、表格/时序上的 MoE 与不确定性门控（最务实的一组）
+% ============================================================
+
+@misc{chernov2025ggmoe,
+  title         = {(GG) {MoE} vs. {MLP} on Tabular Data},
+  author        = {Chernov, Andrei},
+  year          = {2025},
+  eprint        = {2502.03608},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+@misc{aviv2025mogu,
+  title         = {{MoGU}: Mixture-of-Gaussians with Uncertainty-based Gating for
+                   Time Series Forecasting},
+  author        = {Aviv, Gilad and Goldberger, Jacob and Shavit, Yoli},
+  year          = {2025},
+  eprint        = {2510.07459},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG}
+}
+
+% 注：Moirai-MoE（arXiv:2410.10469, NeurIPS 2024）标题与出处已核，
+% 但**完整作者名单未逐一核验**，故本文件暂不收录。要用请先到 arXiv 页面复制官方作者列表，
+% 再按上面的格式加进来。见 docs/文献库.md 的「待核条目」。
+
+% ============================================================
+%  十六、最接近的已有工作（写论文时必须引齐，否则会被认为没做功课）
+% ============================================================
+
+@misc{pellegrino2021factor,
+  title         = {Factor-augmented tree ensembles},
+  author        = {Pellegrino, Filippo},
+  year          = {2021},
+  eprint        = {2111.14000},
+  archivePrefix = {arXiv},
+  primaryClass  = {stat.ML},
+  note          = {把状态空间方法提取的潜平稳因子加进时序回归树 —— 与本工作新增的潜状态特征最接近的先例}
+}
+
+@article{cruz2018dynamic,
+  title   = {Dynamic classifier selection: Recent advances and perspectives},
+  author  = {Cruz, Rafael M. O. and Sabourin, Robert and Cavalcanti, George D. C.},
+  journal = {Information Fusion},
+  volume  = {41},
+  pages   = {195--216},
+  year    = {2018},
+  doi     = {10.1016/j.inffus.2017.09.010},
+  note    = {"逐样本选/合模型"这一族方法的权威综述}
+}
+
+% ============================================================
+%  十七、成本敏感学习（"阈值优化不是创新点"的出处，用于诚实定位）
+% ============================================================
+
+@inproceedings{elkan2001foundations,
+  title     = {The Foundations of Cost-Sensitive Learning},
+  author    = {Elkan, Charles},
+  booktitle = {Proceedings of the 17th International Joint Conference on
+               Artificial Intelligence (IJCAI)},
+  pages     = {973--978},
+  year      = {2001}
+}
+
+@article{weigend1995nonlinear,
+  title   = {Nonlinear Gated Experts for Time Series: Discovering Regimes and
+             Avoiding Overfitting},
+  author  = {Weigend, Andreas S. and Mangeas, Morgan and Srivastava, Ashok N.},
+  journal = {International Journal of Neural Systems},
+  year    = {1995},
+  note    = {PMID 8963468; 卷期页请在出版商页面复核后补全}
 }

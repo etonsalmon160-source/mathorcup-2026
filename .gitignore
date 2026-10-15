@@ -58,6 +58,9 @@ paper/*.synctex.gz
 paper/*.fls
 paper/*.fdb_latexmk
 
+# CatBoost 的训练日志目录（代码里已用 allow_writing_files=False 关掉，这里兜底）
+catboost_info/
+
 # Python
 __pycache__/
 *.py[cod]

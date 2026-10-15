@@ -59,9 +59,36 @@ docs/              赛制、分工、复现规范、备战计划
 conda activate mathorcup          # 激活竞赛环境（Python 3.12）
 
 make check                        # 环境自检：包版本 + 数据目录 + 复现性
+make smoke                        # 用造假数据把整条流水线跑通（不碰真实数据）
+make run-all                      # 从 data/raw 一路跑到提交文件
 make paper                        # 编译论文 PDF
 make clean                        # 清理中间产物
 ```
+
+想分步跑（换个配置就加 `CONFIG=src/configs/xxx.yaml`）：
+
+```bash
+make data                         # 数据体检：缺失/分布/类别不平衡，先看清楚再动手
+make train                        # 交叉验证 + 全量重训，报"均值 ± 标准差"
+make predict                      # 出 results/<配置名>/submission.csv
+make plots                        # 出图到 figures/<配置名>/
+```
+
+## 流水线怎么走（拿到数据后的顺序）
+
+| 步骤 | 命令 | 产出 |
+|---|---|---|
+| 1. 填配置 | 复制 `src/configs/baseline.yaml` 改路径和目标列 | 一份实验配置 |
+| 2. 看数据 | `make data CONFIG=...` | 数据体检报告（终端） |
+| 3. 训模型 | `make train CONFIG=...` | `results/<名>/metrics.json`、特征重要度、模型 |
+| 4. 出提交 | `make predict CONFIG=...` | `results/<名>/submission.csv` |
+| 5. 出图 | `make plots CONFIG=...` | `figures/<名>/*.png`（直接进论文） |
+
+每次训练都会往 `results/ledger.csv` 追加一行台账，对比不同实验看这个文件。
+**换模型只改配置里 `model` 一行**，但注意三个库的参数名不通用——用 `src/configs/` 下对应的那份。
+
+**生信队友从这里开始**：`src/features.py` 里的 `domain_features()` 是领域特征的入口，
+机制驱动的特征写在那里，见 [docs/角色分工.md](docs/角色分工.md)。
 
 ## 每天的最低动作
 
