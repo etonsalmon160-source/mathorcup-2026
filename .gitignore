@@ -1,0 +1,73 @@
+# ===== 大文件一律不入库 =====
+# 数据与产物只留在本地，备份走网盘。原因见 README「大文件一律不入库」。
+# 保留目录占位：data/**/.gitkeep
+
+# 数据
+data/raw/*
+data/interim/*
+data/processed/*
+data/external/*
+!data/**/.gitkeep
+
+# 模型与大二进制
+models/*
+!models/.gitkeep
+*.h5
+*.hdf5
+*.h5ad
+*.pkl
+*.pickle
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.gguf
+*.bin
+*.npy
+*.npz
+*.parquet
+*.feather
+*.arrow
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.gz
+
+# 结果与日志
+results/*
+!results/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# 提交归档（二进制/大文件），台账本身要入库
+submissions/archive/*
+!submissions/archive/.gitkeep
+
+# 论文编译产物
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.bbl
+paper/*.blg
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+env/
+*.egg-info/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+*~

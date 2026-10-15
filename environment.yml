@@ -1,0 +1,71 @@
+# MathorCup 2026 竞赛环境（Python 3.12）
+# 创建：conda env create -f environment.yml
+#   （本机 conda 已配清华镜像，见 ~/.condarc）
+# 更新：conda env update -f environment.yml --prune
+#
+# 设计原则：赛题未公布 ⇒ 环境要"宽"不要"深"。
+# 覆盖三类典型大数据赛题：结构化表格预测 / 文本 / 图像。
+# 无 GPU（本机 driver 起不来）⇒ 深度学习只装 CPU 版，且列为可选。
+
+name: mathorcup
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+
+  # ---- 基础数值与数据处理 ----
+  - numpy
+  - pandas
+  - scipy
+  - pyarrow          # parquet 读写
+  - openpyxl         # xlsx 读写
+
+  # ---- 建模：表格数据的三驾马车 ----
+  - scikit-learn
+  - lightgbm
+  - xgboost
+  - catboost
+
+  # ---- 调参与模型解释（论文里论证"模型合理"要用）----
+  - optuna
+  - shap
+
+  # ---- 统计（经济学哥的场子）----
+  - statsmodels
+  - scikit-posthocs
+
+  # ---- 可视化 ----
+  - matplotlib
+  - seaborn
+  - plotly
+
+  # ---- 中文文本处理（题目常含文本/评论/评论类数据）----
+  - nltk
+  - jieba
+  - wordcloud
+
+  # ---- 图像（题目常含图片类数据）----
+  - pillow
+  - opencv
+
+  # ---- 降维 / 聚类 / 图 ----
+  - umap-learn
+  - networkx
+
+  # ---- 交互与工程 ----
+  - jupyterlab
+  - ipykernel
+  - tqdm
+  - pyyaml
+  - python-dotenv
+  - rich
+
+  - pip:
+      # pip 专有或版本更快的包
+      - polars           # 大表比 pandas 快且省内存
+      - duckdb           # 直接 SQL 查询 csv/parquet，赛题数据大时救命
+      - missingno        # 缺失值可视化
+      - gplearn          # 符号回归，创新点常用
+      - feature-engine   # 特征工程
+      - ydata-profiling  # 一键 EDA 报告（HTML）

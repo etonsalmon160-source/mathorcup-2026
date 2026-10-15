@@ -1,0 +1,104 @@
+% MathorCup 2026 大数据竞赛 — 论文模板
+% 编译：make paper   （内部走 xelatex，中文用 ctex）
+% 结构：标题/摘要 → 正文 → 参考文献 → 附录（代码）
+\documentclass[12pt, a4paper]{ctexart}
+
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}      % 三线表 \toprule \midrule \bottomrule
+\usepackage{multirow}
+\usepackage{siunitx}       % 数字对齐
+\usepackage{caption}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}   % 参考文献，配合 refs.bib（\citep）
+
+\graphicspath{{figures/}}
+\captionsetup{font=small, labelfont=bf}
+
+% ---- 标题信息：开赛拿到赛题后改这里 ----
+\title{\textbf{题目：〔赛题名称〕}\\[6pt]
+       \large ——〔副标题：一句话概括你的方法〕}
+\author{}
+\date{}
+
+\begin{document}
+
+% ============ 标题页 ============
+\maketitle
+\thispagestyle{empty}
+
+\vspace{-1cm}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+参赛队号 & 〔报名后官网生成，填这里〕 \\
+参赛组别 & 〔研究生组 / 本科组 / 专科组〕 \\
+所选赛题 & 〔A 题 / B 题〕 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{0.5cm}
+
+% ============ 摘要 ============
+% 评审明确要求：摘要要"简明扼要地概述解决问题的核心思想以及效果"。
+% 写法建议：问题一句 → 方法一段 → 结果用数字 → 结论一句。
+\begin{center}
+\textbf{\large 摘\quad 要}
+\end{center}
+
+\noindent
+〔一句话点出赛题要解决的核心问题。〕
+针对〔问题一〕，本文〔核心方法，含关键创新〕，得到〔主结果，写具体数字，
+如：准确率 0.923、较基线提升 4.1 个百分点〕。
+针对〔问题二〕，〔方法〕，〔结果〕。
+本文的主要创新点在于：〔1. …；2. …；3. …〕。
+最后，〔结论与推广价值，一句话〕。
+
+\vspace{0.3cm}
+\noindent\textbf{关键词：}〔关键词1；关键词2；关键词3；关键词4〕
+
+\newpage
+
+% ============ 正文 ============
+\section{问题重述与分析}
+\subsection{问题背景}
+\subsection{问题提出}
+\subsection{问题分析}   % 三问逐条拆解，画出思路流程图
+
+\section{数据预处理与探索性分析}
+\subsection{数据概况}
+\subsection{数据清洗}   % 缺失、异常、重复；说明每条处理规则的理由
+\subsection{探索性分析} % 放图：分布、相关性、类别不平衡
+\input{sections/eda}   % 大段内容拆到 sections/ 下，模板见该文件
+
+\section{模型建立与求解}
+\subsection{特征工程}
+\subsection{模型选择与原理}
+\subsection{训练与调参}
+\subsection{结果与分析}
+
+\section{模型评价与推广}
+\subsection{模型优点}
+\subsection{模型缺点}
+\subsection{改进方向}
+
+\section{结论}
+
+% ============ 参考文献 ============
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+% ============ 附录 ============
+\newpage
+\appendix
+\section{程序代码}
+% 注意：即使代码放进了这里，官方要求仍须单独以支撑材料提交一份源程序。
+\subsection{数据预处理}
+\subsection{模型训练}
+
+\end{document}

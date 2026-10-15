@@ -1,0 +1,27 @@
+# 实验配置示例。跑法：python -m src.train --config src/configs/baseline.yaml
+# 每次实验复制一份改，别改这个文件（保留一份可对照的起点）。
+name: baseline
+seed: 42
+
+data:
+  train: data/raw/train.csv        # 开赛后改成真实路径
+  test: data/raw/test.csv
+  target: TODO                     # 目标列名
+  id_col: null
+
+cv:
+  strategy: stratified             # stratified | kfold | timeseries
+  n_splits: 5
+
+model: lightgbm                    # lightgbm | xgboost | catboost
+
+params:
+  n_estimators: 800
+  learning_rate: 0.05
+  num_leaves: 31
+  min_child_samples: 20
+  subsample: 0.8
+  colsample_bytree: 0.8
+
+output:
+  dir: results/baseline

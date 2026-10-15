@@ -1,0 +1,28 @@
+% 示例分节文件。main.tex 里用 \input{sections/eda} 引入。
+% 好处：多人各写一节，减少冲突；单节编译调试快。
+
+数据基本情况见表~\ref{tab:data-overview}。
+
+\begin{table}[H]
+\centering
+\caption{数据概况}
+\label{tab:data-overview}
+\begin{tabular}{lrrr}
+\toprule
+数据集 & 样本数 & 特征数 & 缺失率 \\
+\midrule
+训练集 & —— & —— & —— \\
+测试集 & —— & —— & —— \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+由图~\ref{fig:example} 可见……
+
+\begin{figure}[H]
+\centering
+% \includegraphics[width=0.8\textwidth]{example.png}
+\fbox{\parbox[c][4cm][c]{0.8\textwidth}{\centering （此处放图）}}
+\caption{〔图题：描述这张图说明了什么，而不是"某某分布图"〕}
+\label{fig:example}
+\end{figure}
