@@ -1,0 +1,51 @@
+# CatBoost 配置。**参数名和 LightGBM 不通用**，所以单独一份。
+# 跑法：python -m src.train --config src/configs/catboost.yaml
+#
+# 注意：baseline.yaml 的 params 直接搬过来会当场 TypeError（colsample_bytree 它不认）。
+# CatBoost 的强项是类别特征处理得好，如果赛题类别列多，可以拿它当主力。
+
+name: baseline_cat
+seed: 42
+seeds: [42]
+
+data:
+  train: data/raw/train.csv
+  test: data/raw/test.csv
+  target: TODO
+  id_col: null
+
+cv:
+  strategy: stratified
+  n_splits: 5
+  primary_metric: null
+
+model: catboost
+
+params:
+  # Holzmüller et al. 2024 (NeurIPS, "Better by Default") 的 meta-tuned 默认值（分类版），
+  # 抄自论文 Table C.3，与官方仓库 pytabkit 源码逐字核对。
+  # 回归任务：depth 改 9、learning_rate 改 0.09、random_strength 改 0.0、one_hot_max_size 改 20、
+  #           leaf_estimation_iterations 改 20。
+  iterations: 1000
+  learning_rate: 0.08
+  depth: 7
+  l2_leaf_reg: 1.0e-5
+  rsm: 1.0
+  bootstrap_type: Bernoulli    # subsample 要配这个才生效
+  subsample: 0.9
+  random_strength: 0.8
+  one_hot_max_size: 15
+  leaf_estimation_iterations: 1
+  max_bin: 254
+  boosting_type: Plain
+
+features:
+  datetime: true
+  missing: true
+  row_stats: true
+  frequency: true
+  categorical: true
+  drop_useless: true
+
+submission:
+  pred_col: prediction

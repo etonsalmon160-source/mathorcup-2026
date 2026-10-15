@@ -1,4 +1,6 @@
-.PHONY: help check env paper paper-quick run-all eda clean
+.PHONY: help check env paper run-all run data train predict plots eda smoke gate validate ablate fuse clean
+
+CONFIG ?= src/configs/baseline.yaml
 
 PY := /home/eto/miniconda3/envs/mathorcup/bin/python
 LATEX := /home/eto/.local/bin/xelatex
@@ -18,7 +20,39 @@ check:
 	$(PY) scripts/check_env.py
 
 run-all:
-	bash scripts/run_all.sh
+	bash scripts/run_all.sh $(CONFIG)
+
+data:            # 先看数据长什么样，再决定特征怎么做
+	$(PY) -m src.data --config $(CONFIG)
+
+train:
+	$(PY) -m src.train --config $(CONFIG)
+
+predict:
+	$(PY) -m src.predict --config $(CONFIG)
+
+plots:
+	$(PY) -m src.plots --config $(CONFIG)
+
+# 用造假数据把整条流水线跑一遍，确认代码没问题（不碰真实数据）
+smoke:
+	$(PY) -m src.selftest
+
+# 七道门自动判 PASS / FAIL，秒级。见 docs/门控系统.md
+gate:
+	$(PY) scripts/gate_check.py
+
+# 对抗验证：训练集和测试集是不是同一个分布（查泄漏/漂移）
+validate:
+	$(PY) -m src.validate --config $(CONFIG)
+
+# 特征组消融：砍掉每组看主指标掉多少（G4 的证据）
+ablate:
+	$(PY) -m src.ablate --config $(CONFIG)
+
+# 融合/门控：多专家加权组合，必须赢过最好单模型才算数（G5 的证据）
+fuse:
+	$(PY) -m src.fuse --config $(CONFIG)
 
 paper:
 	cd paper && $(LATEX) -interaction=nonstopmode main.tex

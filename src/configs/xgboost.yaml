@@ -1,0 +1,49 @@
+# XGBoost 配置。**参数名和 LightGBM 不通用**，所以单独一份。
+# 跑法：python -m src.train --config src/configs/xgboost.yaml
+#
+# 和 baseline.yaml 的差别只在 model 和 params，其余照抄即可。
+# 注意：把 baseline.yaml 的 params 直接搬过来会出问题——xgboost 会**静默忽略**
+# num_leaves / min_child_samples，模型悄悄变差而你不自知。
+
+name: baseline_xgb
+seed: 42
+seeds: [42]
+
+data:
+  train: data/raw/train.csv
+  test: data/raw/test.csv
+  target: TODO
+  id_col: null
+
+cv:
+  strategy: stratified
+  n_splits: 5
+  primary_metric: null
+
+model: xgboost
+
+params:
+  # Holzmüller et al. 2024 (NeurIPS, "Better by Default") 的 meta-tuned 默认值（分类版），
+  # 抄自论文 Table C.2，与官方仓库 pytabkit 源码逐字核对。
+  # 回归任务：max_depth 改 9、learning_rate 改 0.05、subsample 改 0.7、min_child_weight 改 2.0。
+  n_estimators: 1000
+  learning_rate: 0.08
+  max_depth: 6
+  min_child_weight: 5.0e-6
+  subsample: 0.65
+  colsample_bytree: 1.0
+  colsample_bylevel: 0.9
+  reg_lambda: 0.0
+  max_bin: 256
+  tree_method: hist
+
+features:
+  datetime: true
+  missing: true
+  row_stats: true
+  frequency: true
+  categorical: true
+  drop_useless: true
+
+submission:
+  pred_col: prediction

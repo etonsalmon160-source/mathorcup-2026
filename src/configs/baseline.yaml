@@ -1,27 +1,57 @@
-# 实验配置示例。跑法：python -m src.train --config src/configs/baseline.yaml
-# 每次实验复制一份改，别改这个文件（保留一份可对照的起点）。
+# 实验配置。跑法：python -m src.train --config src/configs/baseline.yaml
+# 每次实验**复制一份**改，别改这个文件（留一份可对照的起点）。
+#
+# 开赛后要改的就三处：data 下的三个路径、data.target、cv.strategy。
+
 name: baseline
 seed: 42
+seeds: [42]            # 要报"均值 ± 标准差"就写 [42, 202, 2026]，跑 3 次
 
 data:
-  train: data/raw/train.csv        # 开赛后改成真实路径
-  test: data/raw/test.csv
-  target: TODO                     # 目标列名
-  id_col: null
+  train: data/raw/train.csv      # 开赛后改成真实路径（绝对路径也认）
+  test: data/raw/test.csv        # 没有测试集就删掉这行
+  target: TODO                   # 目标列名（要预测的那一列）
+  id_col: null                   # 提交文件里的 ID 列，例：id / 用户编号
 
 cv:
-  strategy: stratified             # stratified | kfold | timeseries
+  strategy: stratified           # stratified | kfold | timeseries
   n_splits: 5
+  primary_metric: null           # 留空 = 分类用 f1、回归用 rmse
+  # sort_by: 日期列名             # strategy=timeseries 时必填，否则会偷看未来
+  # group_col: 用户编号           # 有"同一实体多条记录"时填，避免同一实体跨折
 
-model: lightgbm                    # lightgbm | xgboost | catboost
+model: lightgbm                  # lightgbm | xgboost | catboost
 
 params:
-  n_estimators: 800
-  learning_rate: 0.05
-  num_leaves: 31
-  min_child_samples: 20
-  subsample: 0.8
-  colsample_bytree: 0.8
+  # 下面这组不是拍脑袋，是 Holzmüller et al. 2024 (NeurIPS, "Better by Default") 的
+  # meta-tuned 默认值（分类版）：在 118 个数据集上调出来、90 个不相交数据集上验证过。
+  # 论文结论：这套默认值 ≈ 50 步 HPO 的水平，但省掉全部调参时间。
+  # 抄自论文 Table C.1，并与官方仓库 pytabkit/models/sklearn/default_params.py 逐字核对。
+  # 回归任务把 num_leaves 改 100、learning_rate 改 0.05、min_child_samples 改 3。
+  n_estimators: 1000
+  learning_rate: 0.04
+  num_leaves: 50
+  min_child_samples: 40
+  min_sum_hessian_in_leaf: 1.0e-7
+  subsample: 0.75
+  bagging_freq: 1
+  colsample_bytree: 1.0
+  max_bin: 255
+  # n_jobs: 4      # 线程数。**千万别写 -1**：本机 20 核实测，-1 会让一次 0.1 秒的
+                   # 训练退化成几分钟卡死。不写就用默认上限 8，小数据上 4 最快。
+
+features:
+  datetime: true                 # 自动找日期列并拆成年/月/日/星期…
+  # datetime_cols: [日期, 下单时间]  # 自动找不准时手工指定
+  missing: true                  # 每行缺失的字段数（缺失模式本身是信号）
+  row_stats: true                # 行内横向统计：均值/极差/变异系数…
+  frequency: true                # 高基数类别转成"出现次数"
+  categorical: true              # 类别列转 pandas category（训练/测试共用取值集合）
+  drop_useless: true             # 丢缺失率 ≥98% 和取值唯一的列
+
+submission:
+  pred_col: prediction           # 提交文件里预测列的列名
+  # id_col: id                   # 一般留空，沿用 data.id_col
 
 output:
   dir: results/baseline

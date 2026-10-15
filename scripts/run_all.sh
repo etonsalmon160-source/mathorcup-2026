@@ -1,25 +1,44 @@
 #!/usr/bin/env bash
 # 一键复现：从 data/raw 跑到最终提交文件。
-# 开赛拿到数据后，把各步骤填进下面。见 docs/复现规范.md「一入口原则」。
+# 用法：bash scripts/run_all.sh [配置名]      默认 baseline
+# 见 docs/复现规范.md「一入口原则」。
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PY=/home/eto/miniconda3/envs/mathorcup/bin/python
+CONFIG="${1:-src/configs/baseline.yaml}"
 cd "$ROOT"
 
-echo ">>> [1/5] 数据加载与清洗"
-# $PY -m src.load_data
+echo ">>> [0/7] 环境自检"
+$PY scripts/check_env.py > /dev/null || { echo "环境有问题，先跑 make check 看详情"; exit 1; }
 
-echo ">>> [2/5] 特征工程"
-# $PY -m src.features
+echo ">>> [1/7] 数据体检（只看不写）"
+$PY -m src.data --config "$CONFIG"
 
-echo ">>> [3/5] 训练"
-# $PY -m src.train --config src/configs/baseline.yaml
+echo ">>> [2/7] 训练 + 交叉验证"
+$PY -m src.train --config "$CONFIG"
 
-echo ">>> [4/5] 预测并生成提交文件"
-# $PY -m src.predict
+echo ">>> [3/7] 对抗验证（训练/测试是否同分布）"
+$PY -m src.validate --config "$CONFIG"
 
-echo ">>> [5/5] 出图"
-# $PY -m src.plots
+echo ">>> [4/7] 特征组消融 + 融合/门控"
+$PY -m src.ablate --config "$CONFIG"
+$PY -m src.fuse --config "$CONFIG"
 
-echo ">>> 完成。提交文件在 results/"
+echo ">>> [5/7] 出提交文件"
+$PY -m src.predict --config "$CONFIG"
+
+echo ">>> [6/7] 出图"
+$PY -m src.plots --config "$CONFIG"
+
+echo ">>> [7/7] 实验台账 + 过门检查"
+$PY - <<'EOF'
+from pathlib import Path
+from src.config import PATHS
+p = PATHS["results"] / "ledger.csv"
+print(p.read_text(encoding="utf-8") if p.exists() else "（还没有台账）")
+EOF
+
+$PY scripts/gate_check.py
+
+echo ">>> 完成。提交文件在 results/<配置名>/submission.csv"
