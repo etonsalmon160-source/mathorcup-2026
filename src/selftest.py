@@ -168,6 +168,62 @@ def check_shipped_configs() -> list[tuple[str, str]]:
     return out
 
 
+def check_guards_falsifiable() -> list[tuple[str, str]]:
+    """**守卫证伪**：喂故意做坏的输入，确认每道门真的会红。
+
+    > 只"跑通"不算验证 —— **永远通过的守卫是假的**。
+    > （这条准则抄自 `~/luad_v2/docs/scientific_rigor_and_audit.md` 的审计流程第 5 条。）
+
+    做法：在 results/ 下造一个假实验目录，塞进各种"故意做坏"的产物，
+    看 gate_check 的对应函数**是否真的返回 FAIL**。测完删掉。
+    """
+    import importlib.util
+    import json as _json
+
+    spec = importlib.util.spec_from_file_location("_gc", ROOT / "scripts" / "gate_check.py")
+    gc = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gc)
+
+    # 注意：不能叫 _ 开头的名字 —— 门的扫描器会跳过它们（那是为排除自检产物），
+    # 假数据就会被无视，守卫永远不红。这个坑正是证伪测试第一次跑出来的。
+    fake = PATHS["results"] / "zz_guardtest"
+    fake.mkdir(parents=True, exist_ok=True)
+    out = []
+
+    def probe(name, fn, expect, write):
+        write()
+        status, detail = fn()
+        ok = status == expect
+        out.append((name, f"{'✓' if ok else '✗'} 期望 {expect}，实得 {status}"
+                         + ("" if ok else f" —— {detail[:60]}")))
+
+    def w(path, obj, csv_rows=None):
+        if csv_rows is not None:
+            import csv as _csv
+            with open(fake / path, "w", newline="", encoding="utf-8") as f:
+                wtr = _csv.DictWriter(f, fieldnames=list(csv_rows[0]))
+                wtr.writeheader(); wtr.writerows(csv_rows)
+        else:
+            (fake / path).write_text(_json.dumps(obj, ensure_ascii=False), encoding="utf-8")
+
+    # G3：对抗验证 AUC 超阈值 → 必须 FAIL
+    probe("G3 对抗验证超阈值", gc.g3_leakage, gc.FAIL,
+          lambda: w("adversarial.json", {"auc": 0.93}))
+    # G4：某特征组被砍掉后反而变好 → 必须 FAIL
+    probe("G4 特征组负贡献", gc.g4_ablation, gc.FAIL,
+          lambda: w("ablation.csv", None, [{"特征组": "行内统计", "与完整模型的差": "0.0150"}]))
+    # G5：融合没赢过单模型 → 必须 FAIL
+    probe("G5 融合未增益", gc.g5_model, gc.FAIL,
+          lambda: (w("ablation.csv", None, [{"特征组": "行内统计", "与完整模型的差": "-0.0100"}]),
+                   w("fusion.json", {"fused_beats_best_single": False}),
+                   w("metrics.json", {"primary_metric": "f1", "seeds": [1, 2, 3],
+                                      "cv": {"f1": 0.9, "f1_std": 0.001}})))
+    # G0/G1 的"没填完就拦下"、G2 的"提交文件格式错就拦下"，在真实赛题数据到来后现场验证；
+    # 上面三条（G3/G4/G5）是纯数值判据，可以在这里用假输入证伪。
+    shutil.rmtree(fake, ignore_errors=True)
+    return out
+
+
 def cleanup(names: list[str]) -> None:
     for name in names:
         shutil.rmtree(PATHS["results"] / name, ignore_errors=True)
@@ -189,13 +245,19 @@ def main() -> None:
     tmp = Path(tempfile.mkdtemp(prefix="mathorcup_selftest_"))
     print(f"临时数据目录：{tmp}\n")
 
-    print("===== 检查 src/configs/ 下的配置文件 =====")
+    print("===== 守卫证伪：故意做坏的输入，守卫必须变红 =====")
+    guard_results = check_guards_falsifiable()
+    for name, status in guard_results:
+        print(f"  {status:34s} {name}")
+    guard_failed = any(s.startswith("✗") for _, s in guard_results)
+
+    print("\n===== 检查 src/configs/ 下的配置文件 =====")
     cfg_results = check_shipped_configs()
     for name, status in cfg_results:
         print(f"  {status:44s} {name}")
     cfg_failed = any(s.startswith("✗") for _, s in cfg_results)
 
-    results, failed = [], cfg_failed
+    results, failed = [], (cfg_failed or guard_failed)
     for kind in ["classification", "regression"]:
         n_tr, n_te = 900, 300
         tr = make_synthetic(kind, n_tr, seed=1)
@@ -236,6 +298,8 @@ def main() -> None:
         print(f"\n产物保留在 results/{PREFIX}_* 和 figures/{PREFIX}_*；临时数据在 {tmp}")
 
     print("\n" + "=" * 58)
+    for name, status in guard_results:
+        print(f"  守卫 {name:30s} {status}")
     for name, status in cfg_results:
         print(f"  配置 {name:34s} {status}")
     for kind, model, status in results:
