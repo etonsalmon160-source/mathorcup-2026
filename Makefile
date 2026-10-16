@@ -1,4 +1,4 @@
-.PHONY: help check env paper run-all run data train predict plots eda smoke gate validate ablate fuse conformal starters clean
+.PHONY: help check env paper run-all run data train predict plots eda smoke gate validate ablate fuse conformal starters drift clean
 
 CONFIG ?= src/configs/baseline.yaml
 BUDGET ?= 0.10
@@ -54,6 +54,10 @@ ablate:
 # 融合/门控：多专家加权组合，必须赢过最好单模型才算数（G5 的证据）
 fuse:
 	$(PY) -m src.fuse --config $(CONFIG)
+
+# 分布漂移检验：MMD（整体有没有变）+ 逐特征 KS（哪里变了）
+drift:
+	$(PY) -m src.drift
 
 # 题型起手式：万一赛题不是预测题（评价类 / 优化类）
 starters:

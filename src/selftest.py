@@ -234,7 +234,8 @@ def check_starter_kits() -> list[tuple[str, str]]:
 
     out = []
     for name, mod_name in [("评价类（AHP+熵权+TOPSIS）", "src.evaluate"),
-                           ("优化类（LP/MILP/指派/灵敏度）", "src.optimize")]:
+                           ("优化类（LP/MILP/指派/灵敏度）", "src.optimize"),
+                           ("分布漂移（MMD + 逐特征 KS）", "src.drift")]:
         try:
             mod = __import__(mod_name, fromlist=["demo"])
             buf = io.StringIO()
