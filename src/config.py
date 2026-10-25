@@ -13,6 +13,8 @@ from pathlib import Path
 import yaml
 
 SEED = 42
+# 敏感模型报"均值 ± 标准差"用的多种子；只改模型随机性，切分固定。
+SEEDS = [SEED, SEED + 1, SEED + 2]
 
 # 线程数上限。**不要用 -1**（= 用满全部核）：
 # 本机 20 核实测，LightGBM 开 n_jobs=-1 会从"0.1 秒"退化到"几分钟卡死"，

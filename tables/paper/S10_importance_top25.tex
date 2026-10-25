@@ -1,0 +1,39 @@
+\begin{table}[tbp]
+\centering
+\caption{补充：化合物置换重要性前 25}
+\label{tab:s10_importance_top25}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{rllrrr}
+\toprule
+排名 & 化合物 & 来源 & 模块 & 置换 ΔMSE (z) & 相对增幅 \\
+\midrule
+1 & Caloric value & 派生 & 派生汇总列 & 0.0067 & 0.0098 \\
+2 & Color & Malt & 未入图 & 0.0066 & 0.0094 \\
+3 & Lactic acid & Wild flora & 0 & 0.0054 & 0.0112 \\
+4 & Ethyl octanoate & Yeast & 3 & 0.0053 & 0.0075 \\
+5 & Ethanol & Yeast & 3 & 0.0047 & 0.0075 \\
+6 & Protein & Others & 0 & 0.0046 & 0.0063 \\
+7 & pH & Others & 未入图 & 0.0042 & 0.0078 \\
+8 & Ethyl decanoate & Yeast & 4 & 0.0040 & 0.0054 \\
+9 & Iso-alpha acids & Hops & 2 & 0.0039 & 0.0068 \\
+10 & Total acids & 派生 & 派生汇总列 & 0.0033 & 0.0070 \\
+11 & Carbon dioxide & Others & 3 & 0.0030 & 0.0042 \\
+12 & Acetaldehyde & Yeast & 3 & 0.0029 & 0.0041 \\
+13 & Sugars & Malt & 4 & 0.0026 & 0.0037 \\
+14 & Ethyl acetate & Yeast & 3 & 0.0026 & 0.0041 \\
+15 & Glycerol & Yeast & 3 & 0.0025 & 0.0037 \\
+16 & Methanethiol & Yeast & 3 & 0.0020 & 0.0030 \\
+17 & Iron & Others & 2 & 0.0020 & 0.0028 \\
+18 & 4-ethyl-phenol & Wild flora & 0 & 0.0019 & 0.0037 \\
+19 & 4-ethyl-guaiacol & Wild flora & 0 & 0.0018 & 0.0034 \\
+20 & Total ester compounds & 派生 & 派生汇总列 & 0.0017 & 0.0027 \\
+21 & Butyl acetate & Yeast & 5 & 0.0016 & 0.0026 \\
+22 & Cis-dihydro-β-terpineol & Hops & 2 & 0.0015 & 0.0019 \\
+23 & 3-methyl-2-hexanol & Yeast & 5 & 0.0014 & 0.0022 \\
+24 & Octyl acetate & Yeast & 4 & 0.0014 & 0.0018 \\
+25 & 2-acetylfuran & Malt & 0 & 0.0013 & 0.0018 \\
+\bottomrule
+\end{tabular}
+\end{table}
+% 注（写入图注/表注，勿直接编译）：置换重要性：打乱该化合物后模型 MSE 的增量（按维标准化后求和）；只列前 25 名，完整 232 行见 results/q1/importance.csv。

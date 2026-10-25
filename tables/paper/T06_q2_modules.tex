@@ -1,0 +1,22 @@
+\begin{table}[tbp]
+\centering
+\caption{问题二：共表达模块结构与富集}
+\label{tab:t06_q2_modules}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrlllll}
+\toprule
+模块 & 节点数 & 度中心枢纽 & 代表性化合物（前 3） & 富集来源（倍数） & q 值 & 异味化合物数 \\
+\midrule
+ME0 & 41 & Ethyl phenylacetate (27) & Lactic acid、Protein、4-ethyl-phenol & Wild flora$\times$4.5 & 0.516 & 1 \\
+ME1 & 39 & E-nerolidol (19) & 2,3-dihydro-farnesol、N-dodecanol、Heptyl acetate & — & 1.000 & 0 \\
+ME2 & 34 & Nerol oxide (29) & Iso-alpha acids、Iron、Cis-dihydro-β-terpineol & Hops$\times$1.6 & 1.000 & 0 \\
+ME3 & 26 & Ethanol (24) & Ethyl octanoate、Ethanol、Carbon dioxide & Yeast$\times$2.0 & 1.95e-08 & 5 \\
+ME4 & 24 & 2-methylbutyl octanoate (27) & Ethyl decanoate、Sugars、Octyl acetate & — & 1.000 & 0 \\
+ME5 & 22 & 3-methyl-2-hexanol (30) & Butyl acetate、3-methyl-2-hexanol、3-furanmethanol & — & 1.000 & 0 \\
+ME6 & 21 & Isoborneol (23) & Camphor、Alpha-terpineol、Terpinen-4-ol & — & 1.000 & 0 \\
+ME7 & 16 & Diacetyl (20) & Benzyl alcohol、Gamma-eudesmol、Diacetyl & — & 1.000 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+% 注（写入图注/表注，勿直接编译）：富集检验只针对化合物来源标签（Hops / Malt / Yeast / Wild flora / Others），q 为 BH-FDR；ME3 的酵母富集是唯一通过 FDR 的模块。代表性化合物按 Q1 置换重要性排序。

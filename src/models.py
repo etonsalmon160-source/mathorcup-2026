@@ -1,10 +1,20 @@
 """模型工厂与训练/预测封装。
 
 三驾马车（LightGBM / XGBoost / CatBoost）接口统一，换模型只改 yaml 里的 `model` 一行。
-本机没有 GPU，这三个在 CPU 上就是结构化数据的最优解，别折腾更重的东西。
+这三个在 CPU 上就是结构化数据的最优解，别折腾更重的东西。
+
+## GPU
+
+设环境变量 `MATHORCUP_GPU=1`（或 `make train GPU=1`）即可切到 GPU，配置不用改。
+**只有 XGBoost 和 CatBoost 会真的用上**：LightGBM 的 pip 轮子不带 CUDA，
+要用得自己编译，赛期不值得——它 CPU 本来就快。
+
+注意：本机 conda 装的 xgboost 是 CPU-only 构建（`USE_CUDA=False`），
+GPU 版在 `mathorcup-gpu` 环境里（pip 装的）。见 `docs/GPU部署清单.md`。
 """
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import numpy as np
@@ -13,6 +23,44 @@ import pandas as pd
 from src.config import N_JOBS, get_logger
 
 log = get_logger("models")
+
+GPU_ENV = "MATHORCUP_GPU"
+
+
+def gpu_requested() -> bool:
+    return os.environ.get(GPU_ENV, "").lower() in ("1", "true", "yes", "on")
+
+
+def apply_gpu_override(model_name: str, params: dict) -> dict:
+    """把参数改成 GPU 版。没设 MATHORCUP_GPU 就原样返回。
+
+    写成这样而不是在 yaml 里另存一份 GPU 配置，是因为**跑错机器时不会静默降级**：
+    `device: cuda` 写死在配置里，换到没卡的机器上会直接报错；
+    而用环境变量控制，CPU 和 GPU 共用同一份配置，少一个会腐化的副本。
+    """
+    if not gpu_requested():
+        return params
+
+    p = dict(params)
+    name = model_name.lower()
+
+    if name == "xgboost":
+        p["device"] = "cuda"
+        p.setdefault("tree_method", "hist")
+
+    elif name == "catboost":
+        p["task_type"] = "GPU"
+        p.setdefault("devices", "0")
+        # GPU 上 rsm 只支持 pairwise 模式，普通分类/回归传了会报错。
+        # 我们的 catboost.yaml 里有 rsm: 1.0（= 不采样特征），去掉无损失。
+        if p.pop("rsm", None) is not None:
+            log.info("CatBoost GPU：去掉 rsm（GPU 仅在 pairwise 模式下支持）")
+
+    elif name == "lightgbm":
+        log.warning("LightGBM 的 pip 轮子没有 CUDA，仍用 CPU。"
+                    "要 GPU 加速请换 xgboost / catboost。")
+
+    return p
 
 SUPPORTED = ("lightgbm", "xgboost", "catboost")
 
@@ -69,6 +117,8 @@ def build_model(model_name: str, params: dict, task: str, seed: int):
     model_name = model_name.lower()
     if model_name not in SUPPORTED:
         raise ValueError(f"不支持的模型 {model_name!r}，可选 {SUPPORTED}")
+
+    params = apply_gpu_override(model_name, params)
     validate_params(model_name, params)
 
     # 线程数统一从 params.n_jobs 取（配置里不写就用默认上限），

@@ -8,6 +8,14 @@ data/interim/*
 data/processed/*
 data/external/*
 !data/**/.gitkeep
+# 冻结清单很小，必须进版本库——否则"改数据 + 重算清单"就能绕过校验
+!data/raw/MANIFEST.json
+!data/raw/MANIFEST.sha256
+!data/raw/PROVENANCE.md
+# 补充数据清单（非官方数据，清单同样要入库；数据本身仍不入库）
+!data/external/MANIFEST.json
+!data/external/MANIFEST.sha256
+!data/external/PROVENANCE.md
 
 # 模型与大二进制
 models/*
@@ -46,6 +54,8 @@ logs/*
 # 提交归档（二进制/大文件），台账本身要入库
 submissions/archive/*
 !submissions/archive/.gitkeep
+# 待上传的打包产物，同上
+submissions/to_upload/
 
 # 论文编译产物
 paper/*.aux

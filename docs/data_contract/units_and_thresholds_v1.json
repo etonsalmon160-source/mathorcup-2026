@@ -1,0 +1,521 @@
+{
+  "source": "data/raw/附件/8.xlsx / Sensory thresholds",
+  "threshold_choice": "median",
+  "defect_markers": {
+    "Dimethyl sulfide": {
+      "chemical_name": "Dimethyl sulfide",
+      "column": "DMS",
+      "transform": "log10",
+      "unit": "ug/L",
+      "threshold_mean": 17.25,
+      "threshold_median": 19.0,
+      "calibrated": "yes",
+      "off_flavors": "cooked vegetables, onion, garlic, corn, black currant, sulfidic, cabbage, tinned tomato, baked beans",
+      "origin_paper": "Malt"
+    },
+    "Diacetyl": {
+      "chemical_name": "Diacetyl",
+      "column": "X2.3.butanedione",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.29925,
+      "threshold_median": 0.09,
+      "calibrated": "yes_gcms",
+      "off_flavors": "butterscotch, popcorn, oily, milky",
+      "origin_paper": "Yeast"
+    },
+    "4-vinylguaiacol": {
+      "chemical_name": "4-vinylguaiacol",
+      "column": "X4VG",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.206333333,
+      "threshold_median": 0.2,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    }
+  },
+  "not_used": {
+    "Trans-2-nonenal": {
+      "column": "X.E..2.nonenal",
+      "status": "missing_threshold",
+      "reason": "8.xlsx 阈值表没有该化合物的阈值，不纳入缺陷门；论文里只描述浓度不升高"
+    }
+  },
+  "all_thresholds": [
+    {
+      "chemical_name": "4-vinylguaiacol",
+      "column": "X4VG",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.206333333,
+      "threshold_median": 0.2,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Acetaldehyde",
+      "column": "acetaldehyde",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 50.0,
+      "threshold_median": 50.0,
+      "calibrated": "yes",
+      "off_flavors": "pungent, rotten-apples, green apple",
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Acetic acid",
+      "column": "acetic_acid.g.L.",
+      "transform": "log10",
+      "unit": "g/L",
+      "threshold_mean": 0.14025,
+      "threshold_median": 0.145,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Wild flora"
+    },
+    {
+      "chemical_name": "Alpha-humulene",
+      "column": "alpha.humulene",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.625,
+      "threshold_median": 0.625,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    },
+    {
+      "chemical_name": "Alpha-terpineol",
+      "column": "X1.alpha.terpineol",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 1.5,
+      "threshold_median": 1.5,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    },
+    {
+      "chemical_name": "Ammonia",
+      "column": "ammonia.mg.L.",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 2.6,
+      "threshold_median": 2.6,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Malt"
+    },
+    {
+      "chemical_name": "Carbon disulfide",
+      "column": "CS2",
+      "transform": "log10",
+      "unit": "ug/L",
+      "threshold_mean": 50.0,
+      "threshold_median": 50.0,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Caryophyllene",
+      "column": "E.caryophyllene",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.28,
+      "threshold_median": 0.23,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    },
+    {
+      "chemical_name": "Citronellol",
+      "column": "citronellol",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.0245,
+      "threshold_median": 0.0245,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    },
+    {
+      "chemical_name": "Diacetyl",
+      "column": "X2.3.butanedione",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.29925,
+      "threshold_median": 0.09,
+      "calibrated": "yes_gcms",
+      "off_flavors": "butterscotch, popcorn, oily, milky",
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Diethyl sulfide",
+      "column": "DES",
+      "transform": "log10",
+      "unit": "ug/L",
+      "threshold_mean": 1.2,
+      "threshold_median": 1.2,
+      "calibrated": "yes",
+      "off_flavors": "rotting vegetables",
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Dimethyl sulfide",
+      "column": "DMS",
+      "transform": "log10",
+      "unit": "ug/L",
+      "threshold_mean": 17.25,
+      "threshold_median": 19.0,
+      "calibrated": "yes",
+      "off_flavors": "cooked vegetables, onion, garlic, corn, black currant, sulfidic, cabbage, tinned tomato, baked beans",
+      "origin_paper": "Malt"
+    },
+    {
+      "chemical_name": "Ethanol",
+      "column": "ethanol..v.v.",
+      "transform": "log10",
+      "unit": "v/v",
+      "threshold_mean": 1.757256,
+      "threshold_median": 1.737199,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Ethyl 2-methylbutyrate",
+      "column": "ethyl_2.methyl_butyrate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.027,
+      "threshold_median": 0.027,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Others"
+    },
+    {
+      "chemical_name": "Ethyl 3-methylbutyrate",
+      "column": "ethyl_isovalerate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.1,
+      "threshold_median": 0.1,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Others"
+    },
+    {
+      "chemical_name": "Ethyl acetate",
+      "column": "ethyl_acetate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 24.0,
+      "threshold_median": 23.0,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Ethyl butyrate",
+      "column": "ethyl.butyrate",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.45,
+      "threshold_median": 0.45,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Ethyl decanoate",
+      "column": "ethyl_decanoate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 1.035,
+      "threshold_median": 1.035,
+      "calibrated": "yes_gcms, yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Ethyl hexanoate",
+      "column": "ethyl_hexanoate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.23,
+      "threshold_median": 0.225,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Ethyl isobutyrate",
+      "column": "ethyl.isobutyrate",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 2.6,
+      "threshold_median": 2.6,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Ethyl nicotinate",
+      "column": "ethyl.nicotinate",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 6.0,
+      "threshold_median": 6.0,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Others"
+    },
+    {
+      "chemical_name": "Ethyl octanoate",
+      "column": "ethyl_octanoate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.7,
+      "threshold_median": 0.75,
+      "calibrated": "yes_gcms, yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Ethyl propionate",
+      "column": "ethyl_propionate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 10.0,
+      "threshold_median": 10.0,
+      "calibrated": "yes_gcms, yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Furfural",
+      "column": "furfural",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 60.0,
+      "threshold_median": 37.5,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Malt"
+    },
+    {
+      "chemical_name": "Geraniol",
+      "column": "geraniol",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.0315,
+      "threshold_median": 0.023,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    },
+    {
+      "chemical_name": "Glycerol",
+      "column": "glycerol",
+      "transform": "log10",
+      "unit": "g/L",
+      "threshold_mean": 4.433333333,
+      "threshold_median": 2.0,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Hydrogen sulfide",
+      "column": "H2S",
+      "transform": "log10",
+      "unit": "ug/L",
+      "threshold_mean": 3.5,
+      "threshold_median": 3.5,
+      "calibrated": "yes",
+      "off_flavors": "sulfidic, rotten eggs",
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Iron",
+      "column": "iron",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.1,
+      "threshold_median": 0.1,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Others"
+    },
+    {
+      "chemical_name": "Iso-alpha acids",
+      "column": "bitterness",
+      "transform": "log10",
+      "unit": "IBU",
+      "threshold_mean": 5.0,
+      "threshold_median": 5.0,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    },
+    {
+      "chemical_name": "Isoamyl acetate",
+      "column": "isopentyl_acetate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.603333333,
+      "threshold_median": 0.6,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Isoamyl alcohol",
+      "column": "isoamyl_alcohol",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 40.015,
+      "threshold_median": 45.0,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Isobutanol",
+      "column": "isobutanol",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 80.0,
+      "threshold_median": 100.0,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Isobutyl acetate",
+      "column": "isobutyl_acetate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 1.0,
+      "threshold_median": 1.0,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Lactic acid",
+      "column": "lactic_acid.mg.L.",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 416.6666667,
+      "threshold_median": 400.0,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Wild flora"
+    },
+    {
+      "chemical_name": "Linalool",
+      "column": "linalool",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 0.027285,
+      "threshold_median": 0.0045,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    },
+    {
+      "chemical_name": "Methylpyrazine",
+      "column": "methylpyrazine",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 1.0,
+      "threshold_median": 1.0,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Malt"
+    },
+    {
+      "chemical_name": "Octyl acetate",
+      "column": "octyl_acetate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 0.5,
+      "threshold_median": 0.5,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Phenethyl acetate",
+      "column": "phenethyl_acetate",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 1.763333333,
+      "threshold_median": 1.29,
+      "calibrated": "yes_gcms,yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Phenethyl alcohol",
+      "column": "phenethyl_alcohol",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 35.01,
+      "threshold_median": 32.5,
+      "calibrated": "yes_gcms, yes",
+      "off_flavors": null,
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Protein",
+      "column": "protein.g.L.",
+      "transform": "log10",
+      "unit": "g/L",
+      "threshold_mean": 1.023933,
+      "threshold_median": 0.846,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Others"
+    },
+    {
+      "chemical_name": "Sugars",
+      "column": "GFS",
+      "transform": "log10",
+      "unit": "g/L",
+      "threshold_mean": 2.9,
+      "threshold_median": 2.9,
+      "calibrated": "yes",
+      "off_flavors": null,
+      "origin_paper": "Malt"
+    },
+    {
+      "chemical_name": "Sulfur dioxide",
+      "column": "SO2.mg.L.",
+      "transform": "log10",
+      "unit": "mg/L",
+      "threshold_mean": 15.33333333,
+      "threshold_median": 11.0,
+      "calibrated": "yes",
+      "off_flavors": "Burnt matches",
+      "origin_paper": "Yeast"
+    },
+    {
+      "chemical_name": "Z-nerolidol",
+      "column": "Z.nerolidol",
+      "transform": "raw",
+      "unit": "mg/L",
+      "threshold_mean": 25.0,
+      "threshold_median": 25.0,
+      "calibrated": "yes_gcms",
+      "off_flavors": null,
+      "origin_paper": "Hops"
+    }
+  ]
+}

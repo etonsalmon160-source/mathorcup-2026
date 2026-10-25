@@ -168,6 +168,45 @@ def check_shipped_configs() -> list[tuple[str, str]]:
     return out
 
 
+def check_gpu_override() -> list[tuple[str, str]]:
+    """GPU 参数注入。**不需要真有 GPU**——这里只验参数改得对不对。
+
+    真 GPU 上的行为由 `scripts/gpu_check.py` 负责，那是另一件事。
+    """
+    import os
+
+    from src.models import apply_gpu_override
+
+    out = []
+    old = os.environ.get("MATHORCUP_GPU")
+    try:
+        os.environ.pop("MATHORCUP_GPU", None)
+        p = apply_gpu_override("xgboost", {"n_estimators": 10})
+        out.append(("GPU 未开启 → 参数原样",
+                    "✓" if "device" not in p else "✗ 不该注入 device"))
+
+        os.environ["MATHORCUP_GPU"] = "1"
+        p = apply_gpu_override("xgboost", {"n_estimators": 10})
+        out.append(("xgboost → device=cuda",
+                    "✓" if p.get("device") == "cuda" else f"✗ 实得 {p}"))
+
+        p = apply_gpu_override("catboost", {"iterations": 10, "rsm": 1.0})
+        ok = p.get("task_type") == "GPU" and "rsm" not in p
+        out.append(("catboost → GPU 且去掉 rsm",
+                    "✓" if ok else f"✗ 实得 {p}"))
+
+        p = apply_gpu_override("lightgbm", {"n_estimators": 10})
+        out.append(("lightgbm → 不乱加 GPU 参数",
+                    "✓" if "device" not in p and "device_type" not in p
+                    else f"✗ 实得 {p}"))
+    finally:
+        if old is None:
+            os.environ.pop("MATHORCUP_GPU", None)
+        else:
+            os.environ["MATHORCUP_GPU"] = old
+    return out
+
+
 def check_guards_falsifiable() -> list[tuple[str, str]]:
     """**守卫证伪**：喂故意做坏的输入，确认每道门真的会红。
 
@@ -286,7 +325,13 @@ def main() -> None:
         print(f"  {status:44s} {name}")
     cfg_failed = any(s.startswith("✗") for _, s in cfg_results)
 
-    results, failed = [], (cfg_failed or guard_failed or starter_failed)
+    print("\n===== GPU 参数注入（不需要真有 GPU）=====")
+    gpu_results = check_gpu_override()
+    for name, status in gpu_results:
+        print(f"  {status:34s} {name}")
+    gpu_failed = any(s.startswith("✗") for _, s in gpu_results)
+
+    results, failed = [], (cfg_failed or guard_failed or starter_failed or gpu_failed)
     for kind in ["classification", "regression"]:
         n_tr, n_te = 900, 300
         tr = make_synthetic(kind, n_tr, seed=1)
@@ -333,6 +378,8 @@ def main() -> None:
         print(f"  起手式 {name:26s} {status}")
     for name, status in cfg_results:
         print(f"  配置 {name:34s} {status}")
+    for name, status in gpu_results:
+        print(f"  GPU {name:35s} {status}")
     for kind, model, status in results:
         print(f"  {kind:14s} {model:10s} {status}")
     print("=" * 58)

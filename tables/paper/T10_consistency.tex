@@ -1,0 +1,25 @@
+\begin{table}[tbp]
+\centering
+\caption{三问互证检查（Q2↔Q3 双轨）}
+\label{tab:t10_consistency}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llllll}
+\toprule
+检查 & 口径 & 指标 & 数值 & 阈值/检验 & 结论 \\
+\midrule
+Q1 ↔ Q3 & 生成 vs 真实风格均值 & 平均 Spearman ρ & 0.6248 & 0.500 & 通过 \\
+Q1 ↔ Q3 & 生成 vs 真实风格均值 & 中位 Spearman ρ & 0.6790 & 0.500 & 通过 \\
+Q1 ↔ Q3 & 生成 vs 真实风格均值 & 平均 RMSE & 0.2413 & — & — \\
+Q2 ↔ Q3 & 有符号 Lasso & 平均 Spearman ρ & 0.1621 & 0.150 & 通过 \\
+Q2 ↔ Q3 & 有符号 Lasso & 中位 Spearman ρ & 0.1627 & 0.150 & 通过 \\
+Q2 ↔ Q3 & 有符号 Lasso & 维度数 $\geq$ 阈值 & 28/50 & — & — \\
+Q2 ↔ Q3 & 有符号 Lasso & Top-20 重合率 / 富集 & 0.238 / 2.689$\times$ & p = 0.021 & — \\
+Q2 ↔ Q3 & 正向 Lasso & 平均 Spearman ρ & 0.1225 & 0.150 & 未通过 \\
+Q2 ↔ Q3 & 正向 Lasso & 中位 Spearman ρ & 0.1160 & 0.150 & 未通过 \\
+Q2 ↔ Q3 & 正向 Lasso & 维度数 $\geq$ 阈值 & 15/50 & — & — \\
+Q2 ↔ Q3 & 正向 Lasso & Top-20 重合率 / 富集 & 0.244 / 2.757$\times$ & p = 0.021 & — \\
+\bottomrule
+\end{tabular}
+\end{table}
+% 注（写入图注/表注，勿直接编译）：Q2↔Q3 按两种口径并列：有符号 Lasso 把正、负效应都计入入选频率，平均 ρ = 0.1621（28/50 维 ≥ 0.15，通过）；正向 Lasso 即 Q2 主结果，平均 ρ = 0.1225（15/50 维，未通过）。两口径的 Spearman 中位数同号，Top-20 重合均显著富集于随机期望（超几何检验 p = 0.021）。主结果 results/q2/top3.csv 仍是纯正向激动剂，未因本表改动。Q1↔Q3 取自 results/consistency/checks.json；Q2↔Q3 取自 results/supplementary/consistency_dual.json（同 Bootstrap 分层、权重、候选池与图平滑）。checks.json 中旧的 Q2↔Q3 数值（平均 0.1723）早于 Q2 重跑，已不可复现，不再引用。此表不修改 results/q1–q3 或 results/composite。

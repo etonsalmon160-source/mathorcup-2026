@@ -8,6 +8,11 @@
 **与 `~/luad_v2`（肺腺癌项目）完全无关**，是独立赛事、独立仓库、独立环境。
 不要把 LUAD 项目的数据、口径、约定带进来。
 
+**已选赛道 A：啤酒酿造化合物分析与啤酒风味预测**（2026-10-23 公布）。
+三问：①用 231 个化合物预测 50 个感官维度的 0–6 分；②构建化合物共表达图并给出
+每个感官维度的 Top-3 关键化合物；③按啤酒风格生成化合物谱（含跨风格迁移）。
+数据与坑见 `docs/赛题A解读.md`。
+
 ## 硬约束（违反即失分，逐条记住）
 
 1. **每天最多提交 1 次。** 提交前必须先写 `submissions/REGISTRY.md`，再上传，再归档到
@@ -18,7 +23,8 @@
    **这不是纯排行榜赛**，论文与创新性权重很大，光有高分模型不够。
 4. **赛期**：初赛 2026-10-23 18:00 → 10-30 20:00（7 天）。
    **论文要在 D6 就成稿**，别拖到最后一天——这是最常见的翻车点。
-5. **🔴 AI 使用必须如实声明。** MathorCup 官方《人工智能工具使用规定》要求
+5. **🔴 AI 使用必须如实声明。** MathorCup 官方《人工智能工具使用规定》
+   （2026-10-16 以大数据竞赛公告发布，**确认适用本赛**）要求
    **核心建模、算法设计、求解与分析由参赛队员独立完成**；用 AI 要在参考文献后声明、
    正文标注、**代码注释里注明**，并额外交《AI工具使用详情说明》PDF。
    不合规**取消评奖资格**。
@@ -37,8 +43,12 @@ conda activate mathorcup     # 或直接用绝对路径
 
 Python 3.12。已装：LightGBM / XGBoost / CatBoost / scikit-learn / Optuna / SHAP /
 pandas / polars / duckdb / statsmodels / matplotlib / seaborn / plotly / jupyter。
-**没有 GPU**（本机 nvidia driver 起不来）⇒ 深度学习只能 CPU 跑，
-**主力押在梯度提升树上**，别把宝押在深模。
+**GPU 安排在 2026-10-23 由管理员启用**（RTX 3080 20G）。深度学习栈装在**独立环境**
+`mathorcup-gpu` 里，`mathorcup` 一个包都不动；23 号当天按 `docs/GPU部署清单.md` 验。
+即便有卡，**主力仍押在梯度提升树上**——表格数据上深模是异构专家，不是主力。
+
+**LightGBM 用不了 CUDA**（pip 轮子不带，实测 `CUDA Tree Learner was not enabled`），
+GPU 加速走 XGBoost / CatBoost。`make train GPU=1` 自动切换。
 
 pytest 未装；自检用 `make check`。
 
@@ -48,7 +58,9 @@ pytest 未装；自检用 `make check`。
 - `src/config.py` 是路径/种子/日志的唯一入口，**不要在脚本里写死绝对路径**。
 - 大文件（数据、模型、结果）**一律不入库**，见 `.gitignore`；备份走网盘。
 - 随机种子固定 `SEED=42`（`src/config.py`）；敏感模型跑 3 个种子报"均值 ± 标准差"。
-- 常用命令：`make check` / `make run-all` / `make paper` / `make clean`。
+- **原始数据先冻结再建模**：`make freeze-check`（哈希 + 官方 zip 锚定）、
+  `make data-gate`（D0–D6）。口径变了必须 `--bless` 并在 `docs/决策记录.md` 留痕。
+- 常用命令：`make check` / `make run-all` / `make gate` / `make paper` / `make clean`。
 
 ## 团队三人
 
@@ -72,7 +84,11 @@ pytest 未装；自检用 `make check`。
 | **全文主线与跨学科叙事** | `docs/主线故事.md` |
 | **万一不是预测题 / 不是表格题** | `docs/赛题类型分支预案.md`（起手式：`make starters`） |
 | **文献地图与引用纪律** | `docs/文献库.md`（BibTeX 在 `paper/refs.bib`） |
+| **🔴 赛道 A 题目与数据的实测解读** | `docs/赛题A解读.md` |
+| **🔴 全队唯一数据口径（变换/主键/阈值）** | `docs/数据口径_v1.md` |
+| **🔴 赛道 A 逐问行文与每日检查点 C0–C8** | `docs/赛题A行文与检查点.md` |
 | **开赛前的靶子（G0 必交）** | `docs/预注册.md` |
+| **GPU 环境装了什么、23 号怎么验、有哪些坑** | `docs/GPU部署清单.md` |
 | 赛制、时间线、评分细则 | `docs/赛制速查.md` |
 | 谁负责什么、7 天怎么排 | `docs/角色分工.md` |
 | 代码怎么写得能复现 | `docs/复现规范.md` |

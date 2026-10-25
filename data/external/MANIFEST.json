@@ -1,0 +1,36 @@
+{
+  "generated_utc": "2026-10-23T14:56:41Z",
+  "scope": "external-supplementary",
+  "official": false,
+  "policy": "docs/补充数据预注册.md",
+  "note": "非赛题官方附件；允许用途与判据见 policy 文件",
+  "zip": {
+    "path": "archive.zip",
+    "sha256": "126242d300880818ba1e30896bd82d3f7c26c318f2c701b9938007411006819d",
+    "bytes": 699787
+  },
+  "zip_members": [
+    "Beer Descriptors Simplified.xlsx",
+    "beer_data_set.csv"
+  ],
+  "files": [
+    {
+      "path": "Beer Descriptors Simplified.xlsx",
+      "sha256": "161e8a841200f74a8158086192948dee25720576bb5fd28927054da05976f329",
+      "bytes": 27751,
+      "source": "zip:Beer Descriptors Simplified.xlsx"
+    },
+    {
+      "path": "archive.zip",
+      "sha256": "126242d300880818ba1e30896bd82d3f7c26c318f2c701b9938007411006819d",
+      "bytes": 699787,
+      "source": "member-provided"
+    },
+    {
+      "path": "beer_data_set.csv",
+      "sha256": "bdfd28f8c75a0da1d86073198aa5341cfe19cabece56827a970915936e0b461a",
+      "bytes": 1817734,
+      "source": "zip:beer_data_set.csv"
+    }
+  ]
+}

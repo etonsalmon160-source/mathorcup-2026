@@ -1,0 +1,232 @@
+column,chemical_name,transform,source,n_valid
+CO2.PSI.,Carbon dioxide,log10,calibrated_log10,250
+CS2,Carbon disulfide,log10,calibrated_log10,250
+DES,Diethyl sulfide,log10,calibrated_log10,250
+DMS,Dimethyl sulfide,log10,calibrated_log10,250
+E.caryophyllene,Caryophyllene,raw,calibrated_raw,250
+E.cinnamaldehyde,Cinnamaldehyde,log10,negative_proves_log,250
+E.methyl.isoeugenol,Methyl isoeugenol,log10,negative_proves_log,250
+E.nerolidol,E-nerolidol,log10,negative_proves_log,250
+E.ocimenone,Ocimenone,log10,negative_proves_log,250
+GFS,Sugars,log10,calibrated_log10,250
+H2S,Hydrogen sulfide,log10,calibrated_log10,250
+MeSH,Methanethiol,log10,calibrated_log10,250
+SO2.mg.L.,Sulfur dioxide,log10,calibrated_log10,250
+X.E..2.nonenal,E-2-nonenal,raw,calibrated_raw,250
+X.E..alpha.ionone,E-α-ionone,log10,negative_proves_log,250
+X.E..beta.damascenone,E-β-damascenone,raw,calibrated_raw,250
+X.E..beta.farnesene,E-β-farnesene,log10,negative_proves_log,250
+X.E..beta.ionone,E-β-ionone,log10,peak_area_inferred,250
+X.E..beta.ocimene,E-β-ocimene,raw,calibrated_raw,250
+X.E..dihydro.apofarnesal,E-dihydro-apofarnesal,log10,negative_proves_log,250
+X.E..ortho.methoxy.cinnamaldehyde,E-ortho-methoxy cinnamaldehyde,log10,negative_proves_log,250
+X.E.E..2.4.decadienal,"E,E-2,4-decadienal",raw,calibrated_raw,250
+X.Z..beta.farnesene,Z-β-farnesene,log10,negative_proves_log,250
+X.Z..dihydro.apofarnesal,Z-dihydro-apofarnesal,log10,negative_proves_log,250
+X1.10.di.epi.cubenol,Epicubenol,log10,negative_proves_log,250
+X1.2.dihydro.8.hydroxy..2E..linalool,"1,2-dihydro-8-hydroxy-2E-linalool",log10,negative_proves_log,250
+X1.alpha.terpineol,Alpha-terpineol,raw,calibrated_raw,250
+X1.octen.3.ol,1-octen-3-ol,log10,negative_proves_log,250
+X1.propanol,1-propanol,log10,negative_proves_log,250
+X13.epi.manool.oxide,13-epi manool oxide,log10,negative_proves_log,250
+X14.hydroxy.9.epi..E..caryophyllene,14-hydroxy-9-epi-(E)-caryophyllene,log10,negative_proves_log,250
+X14.hydroxy.alpha.humulene,14-hydroxy-α-humulene,log10,negative_proves_log,250
+X2.3.butanedione,Diacetyl,raw,calibrated_raw,241
+X2.3.dihydro.farnesol,"2,3-dihydro-farnesol",log10,negative_proves_log,250
+X2.6.dimethyl.pyrazine,"2,6-dimethylpyrazine",log10,negative_proves_log,250
+X2.acetylfuran,2-acetylfuran,log10,negative_proves_log,250
+X2.acetylpyrrole,2-acetylpyrrole,log10,negative_proves_log,250
+X2.butyloctanoate,2-butyl octanoate,log10,negative_proves_log,250
+X2.ethyl.1.hexanol,2-ethyl-1-hexanol,log10,negative_proves_log,250
+X2.ethyl.3.methylpyrazine,2-ethyl-3-methylpyrazine,raw,calibrated_raw,250
+X2.ethylhexylsalicylate,2-ethylhexyl acrylate,log10,negative_proves_log,250
+X2.furanmethanol,Furfuryl alcohol,log10,negative_proves_log,250
+X2.methyl.1.butanol,2-methyl-1-butanol,log10,peak_area_inferred,250
+X2.methyl.benzofuran,2-methyl-benzofuran,log10,negative_proves_log,250
+X2.methylbutyl.octanoate,2-methylbutyl octanoate,log10,negative_proves_log,250
+X2.methyltetrahydrofuran.3.one,2-methyltetrahydrofuran-3-one,raw,calibrated_raw,250
+X2.pentyl.furan,2-pentyl furan,log10,negative_proves_log,250
+X2.phenyl.ethyl.butyrate,2-phenyl ethyl butyrate,log10,negative_proves_log,250
+X2.undecanol,2-undecanol,log10,negative_proves_log,250
+X2.undecanone,2-undecanone,log10,negative_proves_log,250
+X2E.6E.methyl.farnesoate,"2E,6E-methyl farnesoate",log10,negative_proves_log,250
+X2E.6Z.farnesal,"E,Z-farnesal",log10,negative_proves_log,250
+X2Z.6E.farnesal,"Z,E-farnesal",log10,negative_proves_log,250
+X2Z.6E.farnesol,"Z,E-farnesol",log10,negative_proves_log,250
+X2Z.6Z.farnesol,"Z,Z-farnesol",log10,negative_proves_log,250
+X3.furanmethanol,3-furanmethanol,log10,peak_area_inferred,250
+X3.methyl.2.butenal,3-methyl-2-butenal,log10,peak_area_inferred,250
+X3.methyl.2.hexanol,3-methyl-2-hexanol,log10,peak_area_inferred,250
+X3.methylbutanal,3-methylbutanal,raw,calibrated_raw,243
+X3.methylthio.propanol,Methionol,log10,negative_proves_log,250
+X3Z.hexenol,Cis-3-hexenol,raw,calibrated_raw,250
+X4.8.alpha.epoxy.caryophyllane,"4,8-α-epoxy-caryophyllane",log10,negative_proves_log,250
+X4.ethyl.guaiacol,4-ethyl-guaiacol,log10,negative_proves_log,250
+X4.ethyl.phenol,4-ethyl-phenol,log10,negative_proves_log,250
+X4.methoxysalicylaldehyde,4-methoxysalicylaldehyde,log10,negative_proves_log,250
+X4.methyl.1.pentanol,4-methyl-1-pentanol,log10,negative_proves_log,250
+X4VG,4-vinylguaiacol,log10,calibrated_log10,250
+X5.methylfurfural,5-methylfurfural,raw,calibrated_raw,250
+X6.methyl.5.hepten.2.one,Methyl heptenone,log10,negative_proves_log,250
+X9.epi..E..caryophyllene,9-epi-E-caryophyllene,log10,negative_proves_log,250
+Z.Z.geranyl.linalool,"Z,Z-geranyl linalool",log10,negative_proves_log,250
+Z.nerolidol,Z-nerolidol,raw,calibrated_raw,250
+acetaldehyde,Acetaldehyde,log10,calibrated_log10,250
+acetic_acid.g.L.,Acetic acid,log10,calibrated_log10,250
+acids_sum,Total acids,log10,negative_proves_log,250
+alloaromadendrene.epoxide,Allo-aromadendrene epoxide,log10,negative_proves_log,250
+alpha.calacorene,α-calacorene,log10,negative_proves_log,250
+alpha.eudesmol,α-eudesmol,log10,negative_proves_log,250
+alpha.humulene,Alpha-humulene,raw,calibrated_raw,250
+alpha.muurolol,α-muurolol,log10,negative_proves_log,250
+alpha.phellandrene,α-phellandrene,log10,negative_proves_log,250
+alpha.terpinyl.isobutanoate,α-terpinyl isobutanoate,log10,negative_proves_log,250
+ambroxide,Ambroxide,log10,negative_proves_log,250
+ammonia.mg.L.,Ammonia,log10,calibrated_log10,250
+amyl.acetate,Amyl acetate,raw,calibrated_raw,223
+aroma_hops_sum,Total hop aroma compounds,log10,peak_area_inferred,237
+benzaldehyde,Benzaldehyde,raw,calibrated_raw,250
+benzyl.alcohol,Benzyl alcohol,raw,calibrated_raw,250
+benzyl.benzoate,Benzyl benzoate,log10,negative_proves_log,250
+beta.cyclohomocitral,β-cyclohomocitral,log10,negative_proves_log,250
+beta.humulene,β-humulene,log10,negative_proves_log,250
+beta.phellandrene,Beta-phellandrene,log10,negative_proves_log,250
+betaglucan.mg.L.,Betaglucan,log10,calibrated_log10,250
+bitterness,Iso-alpha acids,log10,calibrated_log10,250
+butyl.acetate,Butyl acetate,log10,negative_proves_log,250
+butylated.hydroxytoluene,Butylated hydroxytoluene,log10,negative_proves_log,250
+cadalene,Cadalene,log10,negative_proves_log,250
+camphor,Camphor,log10,negative_proves_log,250
+car.3.en.2.one,Car-3-en-2-one,log10,negative_proves_log,250
+caryophylla.4.12..8.13..dien.5.alpha.ol,"Caryophylla-4,8-dien-5-ol",log10,negative_proves_log,250
+caryophyllene.acetate,Caryophyllene acetate,log10,negative_proves_log,250
+caryophyllene.alcohol,Caryophyllene alcohol,log10,negative_proves_log,250
+caryophyllene.oxide,Caryophyllene oxide,log10,negative_proves_log,250
+cis.beta.terpineol,Cis-β-terpineol,log10,negative_proves_log,250
+cis.dihydro.beta.terpineol,Cis-dihydro-β-terpineol,log10,negative_proves_log,250
+cis.linalool.oxide,Cis-linalool oxide,log10,negative_proves_log,250
+citronellol,Citronellol,raw,calibrated_raw,250
+color.EBC.,Color,log10,calibrated_log10,250
+cumin.aldehyde,Cumin aldehyde,log10,negative_proves_log,250
+dehydroxy.cis.linalool.oxide,Dehydroxy-cis-linalool oxide,log10,negative_proves_log,250
+delta.terpinyl.acetate,Terpiryl acetate,log10,negative_proves_log,250
+diethyl.succinate,Diethyl succinate,raw,calibrated_raw,250
+dihydroisocaryophyllene.epoxide,Tobacarol,log10,negative_proves_log,250
+dimethoxy..E..citral,Dimethoxy-E-citral,log10,negative_proves_log,250
+dodecanal,Dodecanal,log10,negative_proves_log,250
+esters_sum,Total ester compounds,log10,negative_proves_log,250
+ethanol..v.v.,Ethanol,log10,calibrated_log10,250
+ethyl..9..decenoate,Ethyl 9-decenoate,log10,negative_proves_log,250
+ethyl..E..cinnamate,Ethyl cinnamate,log10,negative_proves_log,250
+ethyl..E..linalool,Ethyl linalool,log10,negative_proves_log,250
+ethyl.5.methylhexanoate,Ethyl 5-methylhexanoate,log10,negative_proves_log,250
+ethyl.benzoate,Ethyl benzoate,log10,peak_area_inferred,250
+ethyl.butyrate,Ethyl butyrate,raw,calibrated_raw,250
+ethyl.furoate,Ethyl furoate,log10,negative_proves_log,250
+ethyl.hex..2E..enoate,Ethyl 2-hexenoate,log10,negative_proves_log,250
+ethyl.hex..3E..enoate,Ethyl 3-hexanoate,log10,peak_area_inferred,250
+ethyl.hexadecanoate,Ethyl hexadecanoate,log10,negative_proves_log,250
+ethyl.hydrocinnamate,Ethyl hydrocinnamate,log10,negative_proves_log,250
+ethyl.isobutyrate,Ethyl isobutyrate,raw,calibrated_raw,249
+ethyl.lactate,Ethyl lactate,log10,negative_proves_log,250
+ethyl.nicotinate,Ethyl nicotinate,raw,calibrated_raw,248
+ethyl.octadecanoate,Ethyl octadecanoate,log10,negative_proves_log,250
+ethyl.pentadecanoate,Ethyl pentadecanoate,log10,negative_proves_log,250
+ethyl.pentanoate,Ethyl pentanoate,raw,calibrated_raw,250
+ethyl.phenylacetate,Ethyl phenylacetate,log10,negative_proves_log,250
+ethyl.tetradecanoate,Ethyl tetradecanoate,log10,negative_proves_log,250
+ethyl.tiglate,Ethyl tiglate,log10,negative_proves_log,250
+ethyl_2.methyl_butyrate,Ethyl 2-methylbutyrate,log10,calibrated_log10,250
+ethyl_acetate,Ethyl acetate,log10,calibrated_log10,250
+ethyl_decanoate,Ethyl decanoate,log10,calibrated_log10,250
+ethyl_hexanoate,Ethyl hexanoate,log10,calibrated_log10,250
+ethyl_isovalerate,Ethyl 3-methylbutyrate,log10,calibrated_log10,250
+ethyl_octanoate,Ethyl octanoate,log10,calibrated_log10,250
+ethyl_propionate,Ethyl propionate,log10,calibrated_log10,250
+eucalyptol,Eucalyptol,log10,negative_proves_log,250
+eugenol,Eugenol,raw,calibrated_raw,250
+foeniculin,Eoeniculin,log10,negative_proves_log,250
+furfural,Furfural,raw,calibrated_raw,249
+gamma.eudesmol,Gamma-eudesmol,log10,negative_proves_log,250
+gamma.nonalactone,Gamma-nonalactone,raw,calibrated_raw,250
+geosmin,Geosmin,log10,negative_proves_log,250
+geraniol,Geraniol,raw,calibrated_raw,250
+germacrene.D,Germacrene D,log10,negative_proves_log,250
+glycerol,Glycerol,log10,calibrated_log10,250
+heptyl.acetate,Heptyl acetate,log10,negative_proves_log,250
+hexyl.acetate,Hexyl acetate,raw,calibrated_raw,250
+humulene.epoxide.II,Humulene epoxide II,log10,negative_proves_log,250
+hydroxy.methyl.furfural,5-hydroxymethylfurfural,log10,negative_proves_log,250
+iron,Iron,log10,calibrated_log10,250
+isoamyl.lactate,Isoamyl lactate,log10,negative_proves_log,250
+isoamyl_alcohol,Isoamyl alcohol,log10,calibrated_log10,250
+isoborneol,Isoborneol,log10,peak_area_inferred,250
+isobutanol,Isobutanol,log10,calibrated_log10,250
+isobutyl.hexanoate,Isobutyl hexanoate,log10,negative_proves_log,250
+isobutyl_acetate,Isobutyl acetate,log10,calibrated_log10,250
+isomaltol,Isomaltol,log10,negative_proves_log,250
+isopentyl.butanoate,Isopentyl butanoate,log10,negative_proves_log,250
+isopentyl.formate,Isopentyl formate,log10,peak_area_inferred,250
+isopentyl.hexanoate,Isopentyl hexanoate,log10,negative_proves_log,250
+isopentyl_acetate,Isoamyl acetate,log10,calibrated_log10,250
+isopropyl.hexadecanoate,Isopropyl hexadecanoate,log10,negative_proves_log,250
+isopropyl.laurate,Isopropyl laurate,log10,negative_proves_log,250
+isopropyl.tetradecanoate,Isopropyl tetradecanoate,log10,negative_proves_log,250
+kcalperc,Caloric value,log10,calibrated_log10,250
+lactic_acid.mg.L.,Lactic acid,log10,calibrated_log10,250
+limonene,Limonene,log10,negative_proves_log,250
+linalool,Linalool,raw,calibrated_raw,250
+linalool.isovalerate,Linalool isovalerate,log10,negative_proves_log,250
+manool,Manool,log10,negative_proves_log,250
+manool.oxide,Manool oxide,log10,negative_proves_log,250
+meta.cymenene,Meta-cymenene,log10,negative_proves_log,250
+methyl.geranate,Methyl geranate,log10,negative_proves_log,250
+methyl.hexadecanoate,Methyl hexadecanoate,log10,negative_proves_log,250
+methyl.para.anisate,Methyl para-anisate,log10,negative_proves_log,250
+methylpyrazine,Methylpyrazine,raw,calibrated_raw,238
+n.decanol,N-decanol,log10,negative_proves_log,250
+n.dodecanol,N-dodecanol,log10,negative_proves_log,250
+n.heptanol,N-heptanol,log10,peak_area_inferred,250
+n.hexanol,N-hexanol,raw,calibrated_raw,250
+n.nonanal,N-nonanal,log10,negative_proves_log,250
+n.nonanol,N-nonanol,log10,negative_proves_log,250
+n.octanol,N-octanol,log10,peak_area_inferred,250
+n.pentanol,N-pentanol,log10,peak_area_inferred,250
+n.tetradecanol,N-tetradecanol,log10,negative_proves_log,250
+neo.allo.ocimene,Neo-allo-ocimene,log10,negative_proves_log,250
+nerol,Nerol,log10,negative_proves_log,250
+nerol.oxide,Nerol oxide,log10,negative_proves_log,250
+neryl.formate,Neryl formate,log10,negative_proves_log,250
+neryl.isobutanoate,Neryl isobutanoate,log10,negative_proves_log,250
+neryl.isovalerate,Neryl isovalerate,log10,negative_proves_log,250
+neryl.propanoate,Neryl propanoate,log10,negative_proves_log,250
+nonan.2.ol,2-nonanol,log10,peak_area_inferred,250
+octyl_acetate,Octyl acetate,log10,calibrated_log10,250
+ortho.cresol,O-cresol,log10,negative_proves_log,250
+pH,pH,log10,calibrated_log10,250
+pentyl.octanoate,Pentyl octanoate,log10,negative_proves_log,250
+perillyl.acetate,Perillyl acetate,log10,negative_proves_log,250
+phenethyl_acetate,Phenethyl acetate,log10,calibrated_log10,250
+phenethyl_alcohol,Phenethyl alcohol,log10,calibrated_log10,250
+phenylacetaldehyde,Phenylacetaldehyde,raw,calibrated_raw,249
+prenyl.isobutyrate,Prenyl isobutyrate,log10,negative_proves_log,250
+propyl.acetate,N-propyl acetate,log10,negative_proves_log,250
+propylene.glycol,Propylene glycol,log10,negative_proves_log,250
+protein.g.L.,Protein,log10,calibrated_log10,250
+selin.11.en.4.alpha.ol,Kongol,log10,negative_proves_log,250
+spathulenol,Spathulenol,log10,negative_proves_log,250
+styrene,Styrene,raw,calibrated_raw,250
+sulfur_sum,Total sulfur compounds,log10,negative_proves_log,250
+tau.cadinol,Tau-cadinol,log10,negative_proves_log,250
+tau.muurolol,Tau-muurolol,log10,negative_proves_log,250
+terpinen.4.ol,Terpinen-4-ol,log10,negative_proves_log,250
+terpinen.4.ol.acetate,Terpinen-4-ol acetate,log10,negative_proves_log,250
+terpinolene,Terpinolene,log10,peak_area_inferred,250
+trans.dihydro.alpha.terpinyl.acetate,Trans-dihydro-α-terpinyl acetate,log10,peak_area_inferred,250
+trans.dihydro.beta.terpineol,Trans-dihydro-β-terpineol,log10,negative_proves_log,250
+unfermentables,Unfermentables,log10,calibrated_log10,250
+valencene,Valencene,log10,negative_proves_log,250
+vanillin,Vanillin,log10,negative_proves_log,250
+vinyl.caprylate,Vinyl caprylate,log10,negative_proves_log,250
+x.methyl.1.octanol,X-methyl-1-octanol,log10,negative_proves_log,250
+y.methyl.1.octanol,Y-methyl-1-octanol,log10,negative_proves_log,250

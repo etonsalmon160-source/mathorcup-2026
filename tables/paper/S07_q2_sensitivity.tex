@@ -1,0 +1,18 @@
+\begin{table}[tbp]
+\centering
+\caption{补充：问题二稳定性选择 α 敏感性}
+\label{tab:s07_q2_sensitivity}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{rrrrrrr}
+\toprule
+α & Bootstrap 次数 & Jaccard 中位数 & Jaccard 均值 & 低稳定维数 & 平均稳定率 & Top-3 Jaccard vs 主表 \\
+\midrule
+0.04 & 100 & 0.500 & 0.690 & 0 & 0.903 & 0.754 \\
+0.06 & 100 & 0.500 & 0.720 & 0 & 0.849 &  \\
+0.08 & 100 & 1.000 & 0.754 & 7 & 0.774 & 0.774 \\
+0.10 & 100 & 0.500 & 0.728 & 19 & 0.686 & 0.696 \\
+\bottomrule
+\end{tabular}
+\end{table}
+% 注（写入图注/表注，勿直接编译）：主分析取 α = 0.06；α = 0.04 更宽松、0.08 更严格。Top-3 Jaccard 为与主表 Top-3 的重合度。
